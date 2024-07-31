@@ -1,0 +1,6343 @@
+@import "@/colors";
+
+.items {
+    margin: 0 140px;
+    margin-bottom: 40px;
+    background-color: rgba(215, 233, 245, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item {
+    display: flex;
+    padding: 20px 40px;
+    user-select: none;
+    justify-content: space-between;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            background: $hovered;
+        }
+    }
+    @media (hover: none) and (pointer: coarse) {
+        &:active {
+            background: $hovered;
+        }
+    }
+
+    &:not(:first-child) {
+        border-top: 4px solid $hovered;
+    }
+
+    transition-property: background-color;
+    transition-duration: 200ms;
+}
+
+.itemButtons {
+    display: flex;
+    gap: 20px;
+
+    .itemButton {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: 900;
+        font-size: 16px;
+        border-radius: 20px;
+        transition-property: background-color, scale;
+        transition-duration: 200ms;
+        box-shadow: 0 0 10px 1px rgba(30, 30, 30, 0.4);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                scale: 0.95;
+            }
+        }
+        @media (hover: none) and (pointer: coarse) {
+            &:active {
+                scale: 0.95;
+            }
+        }
+
+        &.add {
+            background: rgba(25, 140, 25, 0.9);
+        }
+        &.take {
+            background: rgba(204, 0, 0, 0.9);
+        }
+    }
+}
+
+.itemInfo {
+    display: flex;
+    font-size: 2em;
+    gap: 60px;
+    font-weight: 600;
+}
+
+.itemIcon {
+    display: flex;
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+.itemValue {
+    z-index: 2;
+    position: absolute;
+    bottom: -30px;
+    right: -12px;
+    font-weight: 700;
+    text-shadow: 2px 2px 2px $bg-color;
+}
+
+.iconMinecraft {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("https://www.gamergeeks.net/apps/minecraft/web-developer-tools/css-blocks-and-entities/icons-minecraft-185.png");
+    background-repeat: no-repeat;
+    background-position: 32px 32px;
+
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    width: 32px;
+    height: 32px;
+    scale: 2;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.acacia-boat {
+    background-position: 0 0;
+}
+.acacia-chest-boat {
+    background-position: -32px 0;
+}
+.acacia-button {
+    background-position: -64px 0;
+}
+.acacia-door {
+    background-position: -96px 0;
+}
+.acacia-fence {
+    background-position: -128px 0;
+}
+.acacia-fence-gate {
+    background-position: -160px 0;
+}
+.acacia-hanging-sign {
+    background-position: -192px 0;
+}
+.acacia-leaves {
+    background-position: -224px 0;
+}
+.acacia-log {
+    background-position: -256px 0;
+}
+.acacia-planks {
+    background-position: -288px 0;
+}
+.acacia-pressure-plate {
+    background-position: -320px 0;
+}
+.acacia-sapling {
+    background-position: -352px 0;
+}
+.acacia-slab {
+    background-position: -416px 0;
+}
+.acacia-stairs {
+    background-position: -448px 0;
+}
+
+.acacia-trapdoor {
+    background-position: -480px 0;
+}
+
+.acacia-wall-hanging-sign {
+    background-position: -512px 0;
+}
+
+.acacia-wall-sign {
+    background-position: -544px 0;
+}
+
+.acacia-wood {
+    background-position: -576px 0;
+}
+
+.activator-rail {
+    background-position: -608px 0;
+}
+
+.air {
+    background-position: -640px 0;
+}
+
+.spawn-egg-allay {
+    background-position: -672px 0;
+}
+
+.allium {
+    background-position: -704px 0;
+}
+
+.amethyst-cluster {
+    background-position: -736px 0;
+}
+
+.amethyst-shard {
+    background-position: -768px 0;
+}
+
+.ancient-debris {
+    background-position: -800px 0;
+}
+
+.andesite {
+    background-position: -832px 0;
+}
+
+.andesite-slab {
+    background-position: -864px 0;
+}
+
+.andesite-stairs {
+    background-position: -896px 0;
+}
+
+.andesite-wall {
+    background-position: -928px 0;
+}
+
+.angler-pottery-sherd {
+    background-position: -960px 0;
+}
+
+.anvil {
+    background-position: -992px 0;
+}
+
+.apple {
+    background-position: 0 -32px;
+}
+
+.archer-pottery-sherd {
+    background-position: -32px -32px;
+}
+
+.armadillo-scute {
+    background-position: -64px -32px;
+}
+
+.spawn-egg-armadillo {
+    background-position: -96px -32px;
+}
+
+.armor-stand {
+    background-position: -128px -32px;
+}
+
+.arms-up-pottery-sherd {
+    background-position: -160px -32px;
+}
+
+.arrow {
+    background-position: -192px -32px;
+}
+
+.attached-melon-stem {
+    background-position: -224px -32px;
+}
+
+.attached-pumpkin-stem {
+    background-position: -256px -32px;
+}
+
+.spawn-egg-axolotl {
+    background-position: -288px -32px;
+}
+
+.azalea {
+    background-position: -320px -32px;
+}
+
+.azalea-leaves {
+    background-position: -352px -32px;
+}
+
+.azure-bluet {
+    background-position: -384px -32px;
+}
+
+.baked-potato {
+    background-position: -416px -32px;
+}
+
+.bamboo {
+    background-position: -448px -32px;
+}
+
+.bamboo-button {
+    background-position: -480px -32px;
+}
+
+.bamboo-door {
+    background-position: -512px -32px;
+}
+
+.bamboo-fence {
+    background-position: -544px -32px;
+}
+
+.bamboo-fence-gate {
+    background-position: -576px -32px;
+}
+
+.bamboo-hanging-sign {
+    background-position: -608px -32px;
+}
+
+.bamboo-mosaic {
+    background-position: -640px -32px;
+}
+
+.bamboo-mosaic-slab {
+    background-position: -672px -32px;
+}
+
+.bamboo-mosaic-stairs {
+    background-position: -704px -32px;
+}
+
+.bamboo-planks {
+    background-position: -736px -32px;
+}
+
+.bamboo-pressure-plate {
+    background-position: -768px -32px;
+}
+
+.bamboo-raft {
+    background-position: -800px -32px;
+}
+
+.bamboo-chest-raft {
+    background-position: -832px -32px;
+}
+
+.bamboo-sapling {
+    background-position: -864px -32px;
+}
+
+.bamboo-sign {
+    background-position: -896px -32px;
+}
+
+.bamboo-slab {
+    background-position: -928px -32px;
+}
+
+.bamboo-stairs {
+    background-position: -960px -32px;
+}
+
+.bamboo-trapdoor {
+    background-position: -992px -32px;
+}
+
+.bamboo-wall-hanging-sign {
+    background-position: 0 -64px;
+}
+
+.bamboo-wall-sign {
+    background-position: -32px -64px;
+}
+
+.creeper-banner-pattern {
+    background-position: -64px -64px;
+}
+
+.flow-banner-pattern {
+    background-position: -96px -64px;
+}
+
+.flower-banner-pattern {
+    background-position: -128px -64px;
+}
+
+.globe-banner-pattern {
+    background-position: -160px -64px;
+}
+
+.guster-banner-pattern {
+    background-position: -192px -64px;
+}
+
+.skull-banner-pattern {
+    background-position: -224px -64px;
+}
+
+.piglin-banner-pattern {
+    background-position: -256px -64px;
+}
+
+.mojang-banner-pattern {
+    background-position: -288px -64px;
+}
+
+.barrel {
+    background-position: -320px -64px;
+}
+
+.barrier {
+    background-position: -352px -64px;
+}
+
+.basalt {
+    background-position: -384px -64px;
+}
+
+.spawn-egg-bat {
+    background-position: -416px -64px;
+}
+
+.beacon {
+    background-position: -448px -64px;
+}
+
+.bedrock {
+    background-position: -480px -64px;
+}
+
+.bee-nest {
+    background-position: -512px -64px;
+}
+
+.spawn-egg-bee {
+    background-position: -544px -64px;
+}
+
+.beehive {
+    background-position: -576px -64px;
+}
+
+.beetroot {
+    background-position: -608px -64px;
+}
+
+.beetroot-seeds {
+    background-position: -640px -64px;
+}
+
+.beetroot-soup {
+    background-position: -672px -64px;
+}
+
+.beetroots {
+    background-position: -704px -64px;
+}
+
+.bell {
+    background-position: -736px -64px;
+}
+
+.big-dripleaf {
+    background-position: -768px -64px;
+}
+
+.big-dripleaf-stem {
+    background-position: -800px -64px;
+}
+
+.birch-boat {
+    background-position: -832px -64px;
+}
+
+.birch-chest-boat {
+    background-position: -864px -64px;
+}
+
+.birch-button {
+    background-position: -896px -64px;
+}
+
+.birch-door {
+    background-position: -928px -64px;
+}
+
+.birch-fence {
+    background-position: -960px -64px;
+}
+
+.birch-fence-gate {
+    background-position: -992px -64px;
+}
+
+.birch-hanging-sign {
+    background-position: 0 -96px;
+}
+
+.birch-leaves {
+    background-position: -32px -96px;
+}
+
+.birch-log {
+    background-position: -64px -96px;
+}
+
+.birch-planks {
+    background-position: -96px -96px;
+}
+
+.birch-pressure-plate {
+    background-position: -128px -96px;
+}
+
+.birch-sapling {
+    background-position: -160px -96px;
+}
+
+.birch-sign {
+    background-position: -192px -96px;
+}
+
+.birch-slab {
+    background-position: -224px -96px;
+}
+
+.birch-stairs {
+    background-position: -256px -96px;
+}
+
+.birch-trapdoor {
+    background-position: -288px -96px;
+}
+
+.birch-wall-hanging-sign {
+    background-position: -320px -96px;
+}
+
+.birch-wall-sign {
+    background-position: -352px -96px;
+}
+
+.birch-wood {
+    background-position: -384px -96px;
+}
+
+.black-banner {
+    background-position: -416px -96px;
+}
+
+.black-bed {
+    background-position: -448px -96px;
+}
+
+.black-candle {
+    background-position: -480px -96px;
+}
+
+.black-carpet {
+    background-position: -512px -96px;
+}
+
+.black-concrete {
+    background-position: -544px -96px;
+}
+
+.black-concrete-powder {
+    background-position: -576px -96px;
+}
+
+.black-dye {
+    background-position: -608px -96px;
+}
+
+.black-glazed-terracotta {
+    background-position: -640px -96px;
+}
+
+.black-shulker-box {
+    background-position: -672px -96px;
+}
+
+.black-stained-glass {
+    background-position: -704px -96px;
+}
+
+.black-stained-glass-pane {
+    background-position: -736px -96px;
+}
+
+.black-terracotta {
+    background-position: -768px -96px;
+}
+
+.black-wall-banner {
+    background-position: -800px -96px;
+}
+
+.black-wool {
+    background-position: -832px -96px;
+}
+
+.blackstone {
+    background-position: -864px -96px;
+}
+
+.blackstone-slab {
+    background-position: -896px -96px;
+}
+
+.blackstone-stairs {
+    background-position: -928px -96px;
+}
+
+.blackstone-wall {
+    background-position: -960px -96px;
+}
+
+.blade-pottery-sherd {
+    background-position: -992px -96px;
+}
+
+.blast-furnace {
+    background-position: 0 -128px;
+}
+
+.blaze-powder {
+    background-position: -32px -128px;
+}
+
+.blaze-rod {
+    background-position: -64px -128px;
+}
+
+.spawn-egg-blaze {
+    background-position: -96px -128px;
+}
+
+.amethyst-block {
+    background-position: -128px -128px;
+}
+
+.bamboo-block {
+    background-position: -160px -128px;
+}
+
+.coal-block {
+    background-position: -192px -128px;
+}
+
+.copper-block {
+    background-position: -224px -128px;
+}
+
+.diamond-block {
+    background-position: -256px -128px;
+}
+
+.emerald-block {
+    background-position: -288px -128px;
+}
+
+.gold-block {
+    background-position: -320px -128px;
+}
+
+.iron-block {
+    background-position: -352px -128px;
+}
+
+.lapis-block {
+    background-position: -384px -128px;
+}
+
+.netherite-block {
+    background-position: -416px -128px;
+}
+
+.quartz-block {
+    background-position: -448px -128px;
+}
+
+.raw-copper-block {
+    background-position: -480px -128px;
+}
+
+.raw-gold-block {
+    background-position: -512px -128px;
+}
+
+.raw-iron-block {
+    background-position: -544px -128px;
+}
+
+.redstone-block {
+    background-position: -576px -128px;
+}
+
+.stripped-bamboo-block {
+    background-position: -608px -128px;
+}
+
+.blue-banner {
+    background-position: -640px -128px;
+}
+
+.blue-bed {
+    background-position: -672px -128px;
+}
+
+.blue-candle {
+    background-position: -704px -128px;
+}
+
+.blue-carpet {
+    background-position: -736px -128px;
+}
+
+.blue-concrete {
+    background-position: -768px -128px;
+}
+
+.blue-concrete-powder {
+    background-position: -800px -128px;
+}
+
+.blue-dye {
+    background-position: -832px -128px;
+}
+
+.blue-glazed-terracotta {
+    background-position: -864px -128px;
+}
+
+.blue-ice {
+    background-position: -896px -128px;
+}
+
+.blue-orchid {
+    background-position: -928px -128px;
+}
+
+.blue-shulker-box {
+    background-position: -960px -128px;
+}
+
+.blue-stained-glass {
+    background-position: -992px -128px;
+}
+
+.blue-stained-glass-pane {
+    background-position: 0 -160px;
+}
+
+.blue-terracotta {
+    background-position: -32px -160px;
+}
+
+.blue-wall-banner {
+    background-position: -64px -160px;
+}
+
+.blue-wool {
+    background-position: -96px -160px;
+}
+
+.spawn-egg-bogged {
+    background-position: -128px -160px;
+}
+
+.bone {
+    background-position: -160px -160px;
+}
+
+.bone-block {
+    background-position: -192px -160px;
+}
+
+.bone-meal {
+    background-position: -224px -160px;
+}
+
+.book {
+    background-position: -256px -160px;
+}
+
+.writable-book {
+    background-position: -288px -160px;
+}
+
+.bookshelf {
+    background-position: -320px -160px;
+}
+
+.experience-bottle {
+    background-position: -352px -160px;
+}
+
+.bow {
+    background-position: -384px -160px;
+}
+
+.bowl {
+    background-position: -416px -160px;
+}
+
+.brain-coral {
+    background-position: -448px -160px;
+}
+
+.brain-coral-block {
+    background-position: -480px -160px;
+}
+
+.brain-coral-fan {
+    background-position: -512px -160px;
+}
+
+.brain-coral-wall-fan {
+    background-position: -544px -160px;
+}
+
+.bread {
+    background-position: -576px -160px;
+}
+
+.breeze-rod {
+    background-position: -608px -160px;
+}
+
+.spawn-egg-breeze {
+    background-position: -640px -160px;
+}
+
+.brewer-pottery-sherd {
+    background-position: -672px -160px;
+}
+
+.brewing-stand {
+    background-position: -704px -160px;
+}
+
+.brick {
+    background-position: -736px -160px;
+}
+
+.brick-slab {
+    background-position: -768px -160px;
+}
+
+.brick-stairs {
+    background-position: -800px -160px;
+}
+
+.brick-wall {
+    background-position: -832px -160px;
+}
+
+.bricks {
+    background-position: -864px -160px;
+}
+
+.brown-banner {
+    background-position: -896px -160px;
+}
+
+.brown-bed {
+    background-position: -928px -160px;
+}
+
+.brown-candle {
+    background-position: -960px -160px;
+}
+
+.brown-carpet {
+    background-position: -992px -160px;
+}
+
+.brown-concrete {
+    background-position: 0 -192px;
+}
+
+.brown-concrete-powder {
+    background-position: -32px -192px;
+}
+
+.brown-dye {
+    background-position: -64px -192px;
+}
+
+.brown-glazed-terracotta {
+    background-position: -96px -192px;
+}
+
+.brown-mushroom {
+    background-position: -128px -192px;
+}
+
+.brown-mushroom-block {
+    background-position: -160px -192px;
+}
+
+.brown-shulker-box {
+    background-position: -192px -192px;
+}
+
+.brown-stained-glass {
+    background-position: -224px -192px;
+}
+
+.brown-stained-glass-pane {
+    background-position: -256px -192px;
+}
+
+.brown-terracotta {
+    background-position: -288px -192px;
+}
+
+.brown-wall-banner {
+    background-position: -320px -192px;
+}
+
+.brown-wool {
+    background-position: -352px -192px;
+}
+
+.brush {
+    background-position: -384px -192px;
+}
+
+.bubble-column {
+    background-position: -416px -192px;
+}
+
+.bubble-coral {
+    background-position: -448px -192px;
+}
+
+.bubble-coral-block {
+    background-position: -480px -192px;
+}
+
+.bubble-coral-fan {
+    background-position: -512px -192px;
+}
+
+.bubble-coral-wall-fan {
+    background-position: -544px -192px;
+}
+
+.bucket {
+    background-position: -576px -192px;
+}
+
+.axolotl-bucket {
+    background-position: -608px -192px;
+}
+
+.cod-bucket {
+    background-position: -640px -192px;
+}
+
+.pufferfish-bucket {
+    background-position: -672px -192px;
+}
+
+.salmon-bucket {
+    background-position: -704px -192px;
+}
+
+.tadpole-bucket {
+    background-position: -736px -192px;
+}
+
+.tropical-fish-bucket {
+    background-position: -768px -192px;
+}
+
+.budding-amethyst {
+    background-position: -800px -192px;
+}
+
+.bundle {
+    background-position: -832px -192px;
+}
+
+.burn-pottery-sherd {
+    background-position: -864px -192px;
+}
+
+.cactus {
+    background-position: -896px -192px;
+}
+
+.cake {
+    background-position: -928px -192px;
+}
+
+.black-candle-cake {
+    background-position: -960px -192px;
+}
+
+.blue-candle-cake {
+    background-position: -992px -192px;
+}
+
+.brown-candle-cake {
+    background-position: 0 -224px;
+}
+
+.candle-cake {
+    background-position: -32px -224px;
+}
+
+.cyan-candle-cake {
+    background-position: -64px -224px;
+}
+
+.gray-candle-cake {
+    background-position: -96px -224px;
+}
+
+.green-candle-cake {
+    background-position: -128px -224px;
+}
+
+.light-blue-candle-cake {
+    background-position: -160px -224px;
+}
+
+.light-gray-candle-cake {
+    background-position: -192px -224px;
+}
+
+.lime-candle-cake {
+    background-position: -224px -224px;
+}
+
+.magenta-candle-cake {
+    background-position: -256px -224px;
+}
+
+.orange-candle-cake {
+    background-position: -288px -224px;
+}
+
+.pink-candle-cake {
+    background-position: -320px -224px;
+}
+
+.purple-candle-cake {
+    background-position: -352px -224px;
+}
+
+.red-candle-cake {
+    background-position: -384px -224px;
+}
+
+.white-candle-cake {
+    background-position: -416px -224px;
+}
+
+.yellow-candle-cake {
+    background-position: -448px -224px;
+}
+
+.calcite {
+    background-position: -480px -224px;
+}
+
+.calibrated-sculk-sensor {
+    background-position: -512px -224px;
+}
+
+.spawn-egg-camel {
+    background-position: -544px -224px;
+}
+
+.campfire {
+    background-position: -576px -224px;
+}
+
+.candle {
+    background-position: -608px -224px;
+}
+
+.carrot {
+    background-position: -640px -224px;
+}
+
+.carrot-on-a-stick {
+    background-position: -672px -224px;
+}
+
+.carrots {
+    background-position: -704px -224px;
+}
+
+.cartography-table {
+    background-position: -736px -224px;
+}
+
+.carved-pumpkin {
+    background-position: -768px -224px;
+}
+
+.spawn-egg-cat {
+    background-position: -800px -224px;
+}
+
+.cauldron {
+    background-position: -832px -224px;
+}
+
+.cave-air {
+    background-position: -864px -224px;
+}
+
+.spawn-egg-cave-spider {
+    background-position: -896px -224px;
+}
+
+.cave-vines {
+    background-position: -928px -224px;
+}
+
+.cave-vines-plant {
+    background-position: -960px -224px;
+}
+
+.chain {
+    background-position: -992px -224px;
+}
+
+.chain-command-block {
+    background-position: 0 -256px;
+}
+
+.chainmail-boots {
+    background-position: -32px -256px;
+}
+
+.chainmail-chestplate {
+    background-position: -64px -256px;
+}
+
+.chainmail-helmet {
+    background-position: -96px -256px;
+}
+
+.chainmail-leggings {
+    background-position: -128px -256px;
+}
+
+.charcoal {
+    background-position: -160px -256px;
+}
+
+.cherry-boat {
+    background-position: -192px -256px;
+}
+
+.cherry-chest-boat {
+    background-position: -224px -256px;
+}
+
+.cherry-button {
+    background-position: -256px -256px;
+}
+
+.cherry-door {
+    background-position: -288px -256px;
+}
+
+.cherry-fence {
+    background-position: -320px -256px;
+}
+
+.cherry-fence-gate {
+    background-position: -352px -256px;
+}
+
+.cherry-hanging-sign {
+    background-position: -384px -256px;
+}
+
+.cherry-leaves {
+    background-position: -416px -256px;
+}
+
+.cherry-log {
+    background-position: -448px -256px;
+}
+
+.cherry-planks {
+    background-position: -480px -256px;
+}
+
+.cherry-pressure-plate {
+    background-position: -512px -256px;
+}
+
+.cherry-sapling {
+    background-position: -544px -256px;
+}
+
+.cherry-sign {
+    background-position: -576px -256px;
+}
+
+.cherry-slab {
+    background-position: -608px -256px;
+}
+
+.cherry-stairs {
+    background-position: -640px -256px;
+}
+
+.cherry-trapdoor {
+    background-position: -672px -256px;
+}
+
+.cherry-wall-hanging-sign {
+    background-position: -704px -256px;
+}
+
+.cherry-wall-sign {
+    background-position: -736px -256px;
+}
+
+.cherry-wood {
+    background-position: -768px -256px;
+}
+
+.chest {
+    background-position: -800px -256px;
+}
+
+.spawn-egg-chicken {
+    background-position: -832px -256px;
+}
+
+.chipped-anvil {
+    background-position: -864px -256px;
+}
+
+.chiseled-bookshelf {
+    background-position: -896px -256px;
+}
+
+.chiseled-copper {
+    background-position: -928px -256px;
+}
+
+.chiseled-deepslate {
+    background-position: -960px -256px;
+}
+
+.chiseled-nether-bricks {
+    background-position: -992px -256px;
+}
+
+.chiseled-polished-blackstone {
+    background-position: 0 -288px;
+}
+
+.chiseled-quartz-block {
+    background-position: -32px -288px;
+}
+
+.chiseled-red-sandstone {
+    background-position: -64px -288px;
+}
+
+.chiseled-sandstone {
+    background-position: -96px -288px;
+}
+
+.chiseled-stone-bricks {
+    background-position: -128px -288px;
+}
+
+.chiseled-tuff {
+    background-position: -160px -288px;
+}
+
+.chiseled-tuff-bricks {
+    background-position: -192px -288px;
+}
+
+.chorus-flower {
+    background-position: -224px -288px;
+}
+
+.chorus-fruit {
+    background-position: -256px -288px;
+}
+
+.chorus-plant {
+    background-position: -288px -288px;
+}
+
+.clay {
+    background-position: -320px -288px;
+}
+
+.clay-ball {
+    background-position: -352px -288px;
+}
+
+.clock {
+    background-position: -384px -288px;
+}
+
+.coal {
+    background-position: -416px -288px;
+}
+
+.coal-ore {
+    background-position: -448px -288px;
+}
+
+.coarse-dirt {
+    background-position: -480px -288px;
+}
+
+.cobbled-deepslate {
+    background-position: -512px -288px;
+}
+
+.cobbled-deepslate-slab {
+    background-position: -544px -288px;
+}
+
+.cobbled-deepslate-stairs {
+    background-position: -576px -288px;
+}
+
+.cobbled-deepslate-wall {
+    background-position: -608px -288px;
+}
+
+.cobblestone {
+    background-position: -640px -288px;
+}
+
+.cobblestone-slab {
+    background-position: -672px -288px;
+}
+
+.cobblestone-stairs {
+    background-position: -704px -288px;
+}
+
+.cobblestone-wall {
+    background-position: -736px -288px;
+}
+
+.cobweb {
+    background-position: -768px -288px;
+}
+
+.cocoa {
+    background-position: -800px -288px;
+}
+
+.cocoa-beans {
+    background-position: -832px -288px;
+}
+
+.spawn-egg-cod {
+    background-position: -864px -288px;
+}
+
+.command-block {
+    background-position: -896px -288px;
+}
+
+.compass {
+    background-position: -928px -288px;
+}
+
+.composter {
+    background-position: -960px -288px;
+}
+
+.conduit {
+    background-position: -992px -288px;
+}
+
+.cooked-chicken {
+    background-position: 0 -320px;
+}
+
+.cooked-cod {
+    background-position: -32px -320px;
+}
+
+.cooked-mutton {
+    background-position: -64px -320px;
+}
+
+.cooked-porkchop {
+    background-position: -96px -320px;
+}
+
+.cooked-rabbit {
+    background-position: -128px -320px;
+}
+
+.cooked-salmon {
+    background-position: -160px -320px;
+}
+
+.cookie {
+    background-position: -192px -320px;
+}
+
+.copper-bulb {
+    background-position: -224px -320px;
+}
+
+.copper-door {
+    background-position: -256px -320px;
+}
+
+.copper-grate {
+    background-position: -288px -320px;
+}
+
+.copper-ingot {
+    background-position: -320px -320px;
+}
+
+.copper-ore {
+    background-position: -352px -320px;
+}
+
+.copper-trapdoor {
+    background-position: -384px -320px;
+}
+
+.cornflower {
+    background-position: -416px -320px;
+}
+
+.spawn-egg-cow {
+    background-position: -448px -320px;
+}
+
+.cracked-deepslate-bricks {
+    background-position: -480px -320px;
+}
+
+.cracked-deepslate-tiles {
+    background-position: -512px -320px;
+}
+
+.cracked-nether-bricks {
+    background-position: -544px -320px;
+}
+
+.cracked-polished-blackstone-bricks {
+    background-position: -576px -320px;
+}
+
+.cracked-stone-bricks {
+    background-position: -608px -320px;
+}
+
+.crafter {
+    background-position: -640px -320px;
+}
+
+.crafting-table {
+    background-position: -672px -320px;
+}
+
+.creeper-head {
+    background-position: -704px -320px;
+}
+
+.spawn-egg-creeper {
+    background-position: -736px -320px;
+}
+
+.creeper-wall-head {
+    background-position: -768px -320px;
+}
+
+.crimson-button {
+    background-position: -800px -320px;
+}
+
+.crimson-door {
+    background-position: -832px -320px;
+}
+
+.crimson-fence {
+    background-position: -864px -320px;
+}
+
+.crimson-fence-gate {
+    background-position: -896px -320px;
+}
+
+.crimson-fungus {
+    background-position: -928px -320px;
+}
+
+.crimson-hanging-sign {
+    background-position: -960px -320px;
+}
+
+.crimson-hyphae {
+    background-position: -992px -320px;
+}
+
+.crimson-nylium {
+    background-position: 0 -352px;
+}
+
+.crimson-planks {
+    background-position: -32px -352px;
+}
+
+.crimson-pressure-plate {
+    background-position: -64px -352px;
+}
+
+.crimson-roots {
+    background-position: -96px -352px;
+}
+
+.crimson-sign {
+    background-position: -128px -352px;
+}
+
+.crimson-slab {
+    background-position: -160px -352px;
+}
+
+.crimson-stairs {
+    background-position: -192px -352px;
+}
+
+.crimson-stem {
+    background-position: -224px -352px;
+}
+
+.crimson-trapdoor {
+    background-position: -256px -352px;
+}
+
+.crimson-wall-hanging-sign {
+    background-position: -288px -352px;
+}
+
+.crimson-wall-sign {
+    background-position: -320px -352px;
+}
+
+.crossbow {
+    background-position: -352px -352px;
+}
+
+.crying-obsidian {
+    background-position: -384px -352px;
+}
+
+.cut-copper {
+    background-position: -416px -352px;
+}
+
+.cut-copper-slab {
+    background-position: -448px -352px;
+}
+
+.cut-copper-stairs {
+    background-position: -480px -352px;
+}
+
+.cut-red-sandstone {
+    background-position: -512px -352px;
+}
+
+.cut-red-sandstone-slab {
+    background-position: -544px -352px;
+}
+
+.cut-sandstone {
+    background-position: -576px -352px;
+}
+
+.cut-sandstone-slab {
+    background-position: -608px -352px;
+}
+
+.cyan-banner {
+    background-position: -640px -352px;
+}
+
+.cyan-bed {
+    background-position: -672px -352px;
+}
+
+.cyan-candle {
+    background-position: -704px -352px;
+}
+
+.cyan-carpet {
+    background-position: -736px -352px;
+}
+
+.cyan-concrete {
+    background-position: -768px -352px;
+}
+
+.cyan-concrete-powder {
+    background-position: -800px -352px;
+}
+
+.cyan-dye {
+    background-position: -832px -352px;
+}
+
+.cyan-glazed-terracotta {
+    background-position: -864px -352px;
+}
+
+.cyan-shulker-box {
+    background-position: -896px -352px;
+}
+
+.cyan-stained-glass {
+    background-position: -928px -352px;
+}
+
+.cyan-stained-glass-pane {
+    background-position: -960px -352px;
+}
+
+.cyan-terracotta {
+    background-position: -992px -352px;
+}
+
+.cyan-wall-banner {
+    background-position: 0 -384px;
+}
+
+.cyan-wool {
+    background-position: -32px -384px;
+}
+
+.damaged-anvil {
+    background-position: -64px -384px;
+}
+
+.dandelion {
+    background-position: -96px -384px;
+}
+
+.danger-pottery-sherd {
+    background-position: -128px -384px;
+}
+
+.dark-oak-boat {
+    background-position: -160px -384px;
+}
+
+.dark-oak-chest-boat {
+    background-position: -192px -384px;
+}
+
+.dark-oak-button {
+    background-position: -224px -384px;
+}
+
+.dark-oak-door {
+    background-position: -256px -384px;
+}
+
+.dark-oak-fence {
+    background-position: -288px -384px;
+}
+
+.dark-oak-fence-gate {
+    background-position: -320px -384px;
+}
+
+.dark-oak-hanging-sign {
+    background-position: -352px -384px;
+}
+
+.dark-oak-leaves {
+    background-position: -384px -384px;
+}
+
+.dark-oak-log {
+    background-position: -416px -384px;
+}
+
+.dark-oak-planks {
+    background-position: -448px -384px;
+}
+
+.dark-oak-pressure-plate {
+    background-position: -480px -384px;
+}
+
+.dark-oak-sapling {
+    background-position: -512px -384px;
+}
+
+.dark-oak-sign {
+    background-position: -544px -384px;
+}
+
+.dark-oak-slab {
+    background-position: -576px -384px;
+}
+
+.dark-oak-stairs {
+    background-position: -608px -384px;
+}
+
+.dark-oak-trapdoor {
+    background-position: -640px -384px;
+}
+
+.dark-oak-wall-hanging-sign {
+    background-position: -672px -384px;
+}
+
+.dark-oak-wall-sign {
+    background-position: -704px -384px;
+}
+
+.dark-oak-wood {
+    background-position: -736px -384px;
+}
+
+.dark-prismarine {
+    background-position: -768px -384px;
+}
+
+.dark-prismarine-slab {
+    background-position: -800px -384px;
+}
+
+.dark-prismarine-stairs {
+    background-position: -832px -384px;
+}
+
+.daylight-detector {
+    background-position: -864px -384px;
+}
+
+.dead-brain-coral {
+    background-position: -896px -384px;
+}
+
+.dead-brain-coral-block {
+    background-position: -928px -384px;
+}
+
+.dead-brain-coral-fan {
+    background-position: -960px -384px;
+}
+
+.dead-brain-coral-wall-fan {
+    background-position: -992px -384px;
+}
+
+.dead-bubble-coral {
+    background-position: 0 -416px;
+}
+
+.dead-bubble-coral-block {
+    background-position: -32px -416px;
+}
+
+.dead-bubble-coral-fan {
+    background-position: -64px -416px;
+}
+
+.dead-bubble-coral-wall-fan {
+    background-position: -96px -416px;
+}
+
+.dead-bush {
+    background-position: -128px -416px;
+}
+
+.dead-fire-coral {
+    background-position: -160px -416px;
+}
+
+.dead-fire-coral-block {
+    background-position: -192px -416px;
+}
+
+.dead-fire-coral-fan {
+    background-position: -224px -416px;
+}
+
+.dead-fire-coral-wall-fan {
+    background-position: -256px -416px;
+}
+
+.dead-horn-coral {
+    background-position: -288px -416px;
+}
+
+.dead-horn-coral-block {
+    background-position: -320px -416px;
+}
+
+.dead-horn-coral-fan {
+    background-position: -352px -416px;
+}
+
+.dead-horn-coral-wall-fan {
+    background-position: -384px -416px;
+}
+
+.dead-tube-coral {
+    background-position: -416px -416px;
+}
+
+.dead-tube-coral-block {
+    background-position: -448px -416px;
+}
+
+.dead-tube-coral-fan {
+    background-position: -480px -416px;
+}
+
+.dead-tube-coral-wall-fan {
+    background-position: -512px -416px;
+}
+
+.debug-stick {
+    background-position: -544px -416px;
+}
+
+.decorated-pot {
+    background-position: -576px -416px;
+}
+
+.deepslate {
+    background-position: -608px -416px;
+}
+
+.deepslate-brick-slab {
+    background-position: -640px -416px;
+}
+
+.deepslate-brick-stairs {
+    background-position: -672px -416px;
+}
+
+.deepslate-brick-wall {
+    background-position: -704px -416px;
+}
+
+.deepslate-bricks {
+    background-position: -736px -416px;
+}
+
+.deepslate-coal-ore {
+    background-position: -768px -416px;
+}
+
+.deepslate-copper-ore {
+    background-position: -800px -416px;
+}
+
+.deepslate-diamond-ore {
+    background-position: -832px -416px;
+}
+
+.deepslate-emerald-ore {
+    background-position: -864px -416px;
+}
+
+.deepslate-gold-ore {
+    background-position: -896px -416px;
+}
+
+.deepslate-iron-ore {
+    background-position: -928px -416px;
+}
+
+.deepslate-lapis-ore {
+    background-position: -960px -416px;
+}
+
+.deepslate-redstone-ore {
+    background-position: -992px -416px;
+}
+
+.deepslate-tile-slab {
+    background-position: 0 -448px;
+}
+
+.deepslate-tile-stairs {
+    background-position: -32px -448px;
+}
+
+.deepslate-tile-wall {
+    background-position: -64px -448px;
+}
+
+.deepslate-tiles {
+    background-position: -96px -448px;
+}
+
+.detector-rail {
+    background-position: -128px -448px;
+}
+
+.diamond {
+    background-position: -160px -448px;
+}
+
+.diamond-axe {
+    background-position: -192px -448px;
+}
+
+.diamond-boots {
+    background-position: -224px -448px;
+}
+
+.diamond-chestplate {
+    background-position: -256px -448px;
+}
+
+.diamond-helmet {
+    background-position: -288px -448px;
+}
+
+.diamond-hoe {
+    background-position: -320px -448px;
+}
+
+.diamond-horse-armor {
+    background-position: -352px -448px;
+}
+
+.diamond-leggings {
+    background-position: -384px -448px;
+}
+
+.diamond-ore {
+    background-position: -416px -448px;
+}
+
+.diamond-pickaxe {
+    background-position: -448px -448px;
+}
+
+.diamond-shovel {
+    background-position: -480px -448px;
+}
+
+.diamond-sword {
+    background-position: -512px -448px;
+}
+
+.diorite {
+    background-position: -544px -448px;
+}
+
+.diorite-slab {
+    background-position: -576px -448px;
+}
+
+.diorite-stairs {
+    background-position: -608px -448px;
+}
+
+.diorite-wall {
+    background-position: -640px -448px;
+}
+
+.dirt {
+    background-position: -672px -448px;
+}
+
+.dirt-path {
+    background-position: -704px -448px;
+}
+
+.disc-fragment-5 {
+    background-position: -736px -448px;
+}
+
+.dispenser {
+    background-position: -768px -448px;
+}
+
+.spawn-egg-dolphin {
+    background-position: -800px -448px;
+}
+
+.spawn-egg-donkey {
+    background-position: -832px -448px;
+}
+
+.dragon-egg {
+    background-position: -864px -448px;
+}
+
+.dragon-head {
+    background-position: -896px -448px;
+}
+
+.dragon-wall-head {
+    background-position: -928px -448px;
+}
+
+.dragon-breath {
+    background-position: -960px -448px;
+}
+
+.dried-kelp {
+    background-position: -992px -448px;
+}
+
+.dried-kelp-block {
+    background-position: 0 -480px;
+}
+
+.dripstone-block {
+    background-position: -32px -480px;
+}
+
+.dropper {
+    background-position: -64px -480px;
+}
+
+.spawn-egg-drowned {
+    background-position: -96px -480px;
+}
+
+.echo-shard {
+    background-position: -128px -480px;
+}
+
+.egg {
+    background-position: -160px -480px;
+}
+
+.spawn-egg-elder-guardian {
+    background-position: -192px -480px;
+}
+
+.elytra {
+    background-position: -224px -480px;
+}
+
+.emerald {
+    background-position: -256px -480px;
+}
+
+.emerald-ore {
+    background-position: -288px -480px;
+}
+
+.map {
+    background-position: -320px -480px;
+}
+
+.enchanted-book {
+    background-position: -352px -480px;
+}
+
+.enchanted-golden-apple {
+    background-position: -384px -480px;
+}
+
+.enchanting-table {
+    background-position: -416px -480px;
+}
+
+.end-crystal {
+    background-position: -448px -480px;
+}
+
+.end-gateway {
+    background-position: -480px -480px;
+}
+
+.end-portal {
+    background-position: -512px -480px;
+}
+
+.end-portal-frame {
+    background-position: -544px -480px;
+}
+
+.end-rod {
+    background-position: -576px -480px;
+}
+
+.end-stone {
+    background-position: -608px -480px;
+}
+
+.end-stone-brick-slab {
+    background-position: -640px -480px;
+}
+
+.end-stone-brick-stairs {
+    background-position: -672px -480px;
+}
+
+.end-stone-brick-wall {
+    background-position: -704px -480px;
+}
+
+.end-stone-bricks {
+    background-position: -736px -480px;
+}
+
+.ender-chest {
+    background-position: -768px -480px;
+}
+
+.spawn-egg-ender-dragon {
+    background-position: -800px -480px;
+}
+
+.ender-pearl {
+    background-position: -832px -480px;
+}
+
+.spawn-egg-enderman {
+    background-position: -864px -480px;
+}
+
+.spawn-egg-endermite {
+    background-position: -896px -480px;
+}
+
+.spawn-egg-evoker {
+    background-position: -928px -480px;
+}
+
+.explorer-pottery-sherd {
+    background-position: -960px -480px;
+}
+
+.exposed-chiseled-copper {
+    background-position: -992px -480px;
+}
+
+.exposed-copper {
+    background-position: 0 -512px;
+}
+
+.exposed-copper-bulb {
+    background-position: -32px -512px;
+}
+
+.exposed-copper-door {
+    background-position: -64px -512px;
+}
+
+.exposed-copper-grate {
+    background-position: -96px -512px;
+}
+
+.exposed-copper-trapdoor {
+    background-position: -128px -512px;
+}
+
+.exposed-cut-copper {
+    background-position: -160px -512px;
+}
+
+.exposed-cut-copper-slab {
+    background-position: -192px -512px;
+}
+
+.exposed-cut-copper-stairs {
+    background-position: -224px -512px;
+}
+
+.ender-eye {
+    background-position: -256px -512px;
+}
+
+.farmland {
+    background-position: -288px -512px;
+}
+
+.feather {
+    background-position: -320px -512px;
+}
+
+.fermented-spider-eye {
+    background-position: -352px -512px;
+}
+
+.fern {
+    background-position: -384px -512px;
+}
+
+.fire {
+    background-position: -416px -512px;
+}
+
+.fire-charge {
+    background-position: -448px -512px;
+}
+
+.fire-coral {
+    background-position: -480px -512px;
+}
+
+.fire-coral-block {
+    background-position: -512px -512px;
+}
+
+.fire-coral-fan {
+    background-position: -544px -512px;
+}
+
+.fire-coral-wall-fan {
+    background-position: -576px -512px;
+}
+
+.firework-rocket {
+    background-position: -608px -512px;
+}
+
+.firework-star {
+    background-position: -640px -512px;
+}
+
+.fishing-rod {
+    background-position: -672px -512px;
+}
+
+.fletching-table {
+    background-position: -704px -512px;
+}
+
+.flint {
+    background-position: -736px -512px;
+}
+
+.flint-and-steel {
+    background-position: -768px -512px;
+}
+
+.flow-pottery-sherd {
+    background-position: -800px -512px;
+}
+
+.flower-pot {
+    background-position: -832px -512px;
+}
+
+.flowering-azalea {
+    background-position: -864px -512px;
+}
+
+.flowering-azalea-leaves {
+    background-position: -896px -512px;
+}
+
+.spawn-egg-fox {
+    background-position: -928px -512px;
+}
+
+.friend-pottery-sherd {
+    background-position: -960px -512px;
+}
+
+.spawn-egg-frog {
+    background-position: -992px -512px;
+}
+
+.frogspawn {
+    background-position: 0 -544px;
+}
+
+.frosted-ice {
+    background-position: -32px -544px;
+}
+
+.furnace {
+    background-position: -64px -544px;
+}
+
+.spawn-egg-ghast {
+    background-position: -96px -544px;
+}
+
+.ghast-tear {
+    background-position: -128px -544px;
+}
+
+.gilded-blackstone {
+    background-position: -160px -544px;
+}
+
+.glass {
+    background-position: -192px -544px;
+}
+
+.glass-bottle {
+    background-position: -224px -544px;
+}
+
+.glass-pane {
+    background-position: -256px -544px;
+}
+
+.glistering-melon-slice {
+    background-position: -288px -544px;
+}
+
+.glow-berries {
+    background-position: -320px -544px;
+}
+
+.glow-ink-sac {
+    background-position: -352px -544px;
+}
+
+.glow-item-frame {
+    background-position: -384px -544px;
+}
+
+.glow-lichen {
+    background-position: -416px -544px;
+}
+
+.spawn-egg-glow-squid {
+    background-position: -448px -544px;
+}
+
+.glowstone {
+    background-position: -480px -544px;
+}
+
+.glowstone-dust {
+    background-position: -512px -544px;
+}
+
+.goat-horn {
+    background-position: -544px -544px;
+}
+
+.spawn-egg-goat {
+    background-position: -576px -544px;
+}
+
+.gold-ingot {
+    background-position: -608px -544px;
+}
+
+.gold-nugget {
+    background-position: -640px -544px;
+}
+
+.gold-ore {
+    background-position: -672px -544px;
+}
+
+.golden-apple {
+    background-position: -704px -544px;
+}
+
+.golden-axe {
+    background-position: -736px -544px;
+}
+
+.golden-boots {
+    background-position: -768px -544px;
+}
+
+.golden-carrot {
+    background-position: -800px -544px;
+}
+
+.golden-chestplate {
+    background-position: -832px -544px;
+}
+
+.golden-helmet {
+    background-position: -864px -544px;
+}
+
+.golden-hoe {
+    background-position: -896px -544px;
+}
+
+.golden-horse-armor {
+    background-position: -928px -544px;
+}
+
+.golden-leggings {
+    background-position: -960px -544px;
+}
+
+.golden-pickaxe {
+    background-position: -992px -544px;
+}
+
+.golden-shovel {
+    background-position: 0 -576px;
+}
+
+.golden-sword {
+    background-position: -32px -576px;
+}
+
+.granite {
+    background-position: -64px -576px;
+}
+
+.granite-slab {
+    background-position: -96px -576px;
+}
+
+.granite-stairs {
+    background-position: -128px -576px;
+}
+
+.granite-wall {
+    background-position: -160px -576px;
+}
+
+.grass {
+    background-position: -192px -576px;
+}
+
+.grass-block {
+    background-position: -224px -576px;
+}
+
+.gravel {
+    background-position: -256px -576px;
+}
+
+.gray-banner {
+    background-position: -288px -576px;
+}
+
+.gray-bed {
+    background-position: -320px -576px;
+}
+
+.gray-candle {
+    background-position: -352px -576px;
+}
+
+.gray-carpet {
+    background-position: -384px -576px;
+}
+
+.gray-concrete {
+    background-position: -416px -576px;
+}
+
+.gray-concrete-powder {
+    background-position: -448px -576px;
+}
+
+.gray-dye {
+    background-position: -480px -576px;
+}
+
+.gray-glazed-terracotta {
+    background-position: -512px -576px;
+}
+
+.gray-shulker-box {
+    background-position: -544px -576px;
+}
+
+.gray-stained-glass {
+    background-position: -576px -576px;
+}
+
+.gray-stained-glass-pane {
+    background-position: -608px -576px;
+}
+
+.gray-terracotta {
+    background-position: -640px -576px;
+}
+
+.gray-wall-banner {
+    background-position: -672px -576px;
+}
+
+.gray-wool {
+    background-position: -704px -576px;
+}
+
+.green-banner {
+    background-position: -736px -576px;
+}
+
+.green-bed {
+    background-position: -768px -576px;
+}
+
+.green-candle {
+    background-position: -800px -576px;
+}
+
+.green-carpet {
+    background-position: -832px -576px;
+}
+
+.green-concrete {
+    background-position: -864px -576px;
+}
+
+.green-concrete-powder {
+    background-position: -896px -576px;
+}
+
+.green-dye {
+    background-position: -928px -576px;
+}
+
+.green-glazed-terracotta {
+    background-position: -960px -576px;
+}
+
+.green-shulker-box {
+    background-position: -992px -576px;
+}
+
+.green-stained-glass {
+    background-position: 0 -608px;
+}
+
+.green-stained-glass-pane {
+    background-position: -32px -608px;
+}
+
+.green-terracotta {
+    background-position: -64px -608px;
+}
+
+.green-wall-banner {
+    background-position: -96px -608px;
+}
+
+.green-wool {
+    background-position: -128px -608px;
+}
+
+.grindstone {
+    background-position: -160px -608px;
+}
+
+.spawn-egg-guardian {
+    background-position: -192px -608px;
+}
+
+.gunpowder {
+    background-position: -224px -608px;
+}
+
+.guster-pottery-sherd {
+    background-position: -256px -608px;
+}
+
+.hanging-roots {
+    background-position: -288px -608px;
+}
+
+.hay-block {
+    background-position: -320px -608px;
+}
+
+.heart-of-the-sea {
+    background-position: -352px -608px;
+}
+
+.heart-pottery-sherd {
+    background-position: -384px -608px;
+}
+
+.heartbreak-pottery-sherd {
+    background-position: -416px -608px;
+}
+
+.heavy-core {
+    background-position: -448px -608px;
+}
+
+.heavy-weighted-pressure-plate {
+    background-position: -480px -608px;
+}
+
+.spawn-egg-hoglin {
+    background-position: -512px -608px;
+}
+
+.honey-block {
+    background-position: -544px -608px;
+}
+
+.honey-bottle {
+    background-position: -576px -608px;
+}
+
+.honeycomb {
+    background-position: -608px -608px;
+}
+
+.honeycomb-block {
+    background-position: -640px -608px;
+}
+
+.hopper {
+    background-position: -672px -608px;
+}
+
+.horn-coral {
+    background-position: -704px -608px;
+}
+
+.horn-coral-block {
+    background-position: -736px -608px;
+}
+
+.horn-coral-fan {
+    background-position: -768px -608px;
+}
+
+.horn-coral-wall-fan {
+    background-position: -800px -608px;
+}
+
+.spawn-egg-horse {
+    background-position: -832px -608px;
+}
+
+.howl-pottery-sherd {
+    background-position: -864px -608px;
+}
+
+.spawn-egg-husk {
+    background-position: -896px -608px;
+}
+
+.ice {
+    background-position: -928px -608px;
+}
+
+.infested-chiseled-stone-bricks {
+    background-position: -960px -608px;
+}
+
+.infested-cobblestone {
+    background-position: -992px -608px;
+}
+
+.infested-cracked-stone-bricks {
+    background-position: 0 -640px;
+}
+
+.infested-deepslate {
+    background-position: -32px -640px;
+}
+
+.infested-mossy-stone-bricks {
+    background-position: -64px -640px;
+}
+
+.infested-stone {
+    background-position: -96px -640px;
+}
+
+.infested-stone-bricks {
+    background-position: -128px -640px;
+}
+
+.ink-sac {
+    background-position: -160px -640px;
+}
+
+.iron-axe {
+    background-position: -192px -640px;
+}
+
+.iron-bars {
+    background-position: -224px -640px;
+}
+
+.iron-boots {
+    background-position: -256px -640px;
+}
+
+.iron-chestplate {
+    background-position: -288px -640px;
+}
+
+.iron-door {
+    background-position: -320px -640px;
+}
+
+.spawn-egg-iron-golem {
+    background-position: -352px -640px;
+}
+
+.iron-helmet {
+    background-position: -384px -640px;
+}
+
+.iron-hoe {
+    background-position: -416px -640px;
+}
+
+.iron-horse-armor {
+    background-position: -448px -640px;
+}
+
+.iron-ingot {
+    background-position: -480px -640px;
+}
+
+.iron-leggings {
+    background-position: -512px -640px;
+}
+
+.iron-nugget {
+    background-position: -544px -640px;
+}
+
+.iron-ore {
+    background-position: -576px -640px;
+}
+
+.iron-pickaxe {
+    background-position: -608px -640px;
+}
+
+.iron-shovel {
+    background-position: -640px -640px;
+}
+
+.iron-sword {
+    background-position: -672px -640px;
+}
+
+.iron-trapdoor {
+    background-position: -704px -640px;
+}
+
+.item-frame {
+    background-position: -736px -640px;
+}
+
+.jack-o-lantern {
+    background-position: -768px -640px;
+}
+
+.jigsaw {
+    background-position: -800px -640px;
+}
+
+.jukebox {
+    background-position: -832px -640px;
+}
+
+.jungle-boat {
+    background-position: -864px -640px;
+}
+
+.jungle-chest-boat {
+    background-position: -896px -640px;
+}
+
+.jungle-button {
+    background-position: -928px -640px;
+}
+
+.jungle-door {
+    background-position: -960px -640px;
+}
+
+.jungle-fence {
+    background-position: -992px -640px;
+}
+
+.jungle-fence-gate {
+    background-position: 0 -672px;
+}
+
+.jungle-hanging-sign {
+    background-position: -32px -672px;
+}
+
+.jungle-leaves {
+    background-position: -64px -672px;
+}
+
+.jungle-log {
+    background-position: -96px -672px;
+}
+
+.jungle-planks {
+    background-position: -128px -672px;
+}
+
+.jungle-pressure-plate {
+    background-position: -160px -672px;
+}
+
+.jungle-sapling {
+    background-position: -192px -672px;
+}
+
+.jungle-sign {
+    background-position: -224px -672px;
+}
+
+.jungle-slab {
+    background-position: -256px -672px;
+}
+
+.jungle-stairs {
+    background-position: -288px -672px;
+}
+
+.jungle-trapdoor {
+    background-position: -320px -672px;
+}
+
+.jungle-wall-hanging-sign {
+    background-position: -352px -672px;
+}
+
+.jungle-wall-sign {
+    background-position: -384px -672px;
+}
+
+.jungle-wood {
+    background-position: -416px -672px;
+}
+
+.kelp {
+    background-position: -448px -672px;
+}
+
+.kelp-plant {
+    background-position: -480px -672px;
+}
+
+.knowledge-book {
+    background-position: -512px -672px;
+}
+
+.ladder {
+    background-position: -544px -672px;
+}
+
+.lantern {
+    background-position: -576px -672px;
+}
+
+.lapis-lazuli {
+    background-position: -608px -672px;
+}
+
+.lapis-ore {
+    background-position: -640px -672px;
+}
+
+.large-amethyst-bud {
+    background-position: -672px -672px;
+}
+
+.large-fern {
+    background-position: -704px -672px;
+}
+
+.lava {
+    background-position: -736px -672px;
+}
+
+.lava-bucket {
+    background-position: -768px -672px;
+}
+
+.lava-cauldron {
+    background-position: -800px -672px;
+}
+
+.lead {
+    background-position: -832px -672px;
+}
+
+.leather {
+    background-position: -864px -672px;
+}
+
+.leather-boots {
+    background-position: -896px -672px;
+}
+
+.leather-helmet {
+    background-position: -928px -672px;
+}
+
+.leather-horse-armor {
+    background-position: -960px -672px;
+}
+
+.leather-leggings {
+    background-position: -992px -672px;
+}
+
+.leather-chestplate {
+    background-position: 0 -704px;
+}
+
+.lectern {
+    background-position: -32px -704px;
+}
+
+.lever {
+    background-position: -64px -704px;
+}
+
+.light {
+    background-position: -96px -704px;
+}
+
+.light-blue-banner {
+    background-position: -128px -704px;
+}
+
+.light-blue-bed {
+    background-position: -160px -704px;
+}
+
+.light-blue-candle {
+    background-position: -192px -704px;
+}
+
+.light-blue-carpet {
+    background-position: -224px -704px;
+}
+
+.light-blue-concrete {
+    background-position: -256px -704px;
+}
+
+.light-blue-concrete-powder {
+    background-position: -288px -704px;
+}
+
+.light-blue-dye {
+    background-position: -320px -704px;
+}
+
+.light-blue-glazed-terracotta {
+    background-position: -352px -704px;
+}
+
+.light-blue-shulker-box {
+    background-position: -384px -704px;
+}
+
+.light-blue-stained-glass {
+    background-position: -416px -704px;
+}
+
+.light-blue-stained-glass-pane {
+    background-position: -448px -704px;
+}
+
+.light-blue-terracotta {
+    background-position: -480px -704px;
+}
+
+.light-blue-wall-banner {
+    background-position: -512px -704px;
+}
+
+.light-blue-wool {
+    background-position: -544px -704px;
+}
+
+.light-gray-banner {
+    background-position: -576px -704px;
+}
+
+.light-gray-bed {
+    background-position: -608px -704px;
+}
+
+.light-gray-candle {
+    background-position: -640px -704px;
+}
+
+.light-gray-carpet {
+    background-position: -672px -704px;
+}
+
+.light-gray-concrete {
+    background-position: -704px -704px;
+}
+
+.light-gray-concrete-powder {
+    background-position: -736px -704px;
+}
+
+.light-gray-dye {
+    background-position: -768px -704px;
+}
+
+.light-gray-glazed-terracotta {
+    background-position: -800px -704px;
+}
+
+.light-gray-shulker-box {
+    background-position: -832px -704px;
+}
+
+.light-gray-stained-glass {
+    background-position: -864px -704px;
+}
+
+.light-gray-stained-glass-pane {
+    background-position: -896px -704px;
+}
+
+.light-gray-terracotta {
+    background-position: -928px -704px;
+}
+
+.light-gray-wall-banner {
+    background-position: -960px -704px;
+}
+
+.light-gray-wool {
+    background-position: -992px -704px;
+}
+
+.light-weighted-pressure-plate {
+    background-position: 0 -736px;
+}
+
+.lightning-rod {
+    background-position: -32px -736px;
+}
+
+.lilac {
+    background-position: -64px -736px;
+}
+
+.lily-of-the-valley {
+    background-position: -96px -736px;
+}
+
+.lily-pad {
+    background-position: -128px -736px;
+}
+
+.lime-banner {
+    background-position: -160px -736px;
+}
+
+.lime-bed {
+    background-position: -192px -736px;
+}
+
+.lime-candle {
+    background-position: -224px -736px;
+}
+
+.lime-carpet {
+    background-position: -256px -736px;
+}
+
+.lime-concrete {
+    background-position: -288px -736px;
+}
+
+.lime-concrete-powder {
+    background-position: -320px -736px;
+}
+
+.lime-dye {
+    background-position: -352px -736px;
+}
+
+.lime-glazed-terracotta {
+    background-position: -384px -736px;
+}
+
+.lime-shulker-box {
+    background-position: -416px -736px;
+}
+
+.lime-stained-glass {
+    background-position: -448px -736px;
+}
+
+.lime-stained-glass-pane {
+    background-position: -480px -736px;
+}
+
+.lime-terracotta {
+    background-position: -512px -736px;
+}
+
+.lime-wall-banner {
+    background-position: -544px -736px;
+}
+
+.lime-wool {
+    background-position: -576px -736px;
+}
+
+.lingering-potion {
+    background-position: -608px -736px;
+}
+
+.spawn-egg-llama {
+    background-position: -640px -736px;
+}
+
+.lodestone {
+    background-position: -672px -736px;
+}
+
+.lodestone-compass {
+    background-position: -704px -736px;
+}
+
+.loom {
+    background-position: -736px -736px;
+}
+
+.mace {
+    background-position: -768px -736px;
+}
+
+.magenta-banner {
+    background-position: -800px -736px;
+}
+
+.magenta-bed {
+    background-position: -832px -736px;
+}
+
+.magenta-candle {
+    background-position: -864px -736px;
+}
+
+.magenta-carpet {
+    background-position: -896px -736px;
+}
+
+.magenta-concrete {
+    background-position: -928px -736px;
+}
+
+.magenta-concrete-powder {
+    background-position: -960px -736px;
+}
+
+.magenta-dye {
+    background-position: -992px -736px;
+}
+
+.magenta-glazed-terracotta {
+    background-position: 0 -768px;
+}
+
+.magenta-shulker-box {
+    background-position: -32px -768px;
+}
+
+.magenta-stained-glass {
+    background-position: -64px -768px;
+}
+
+.magenta-stained-glass-pane {
+    background-position: -96px -768px;
+}
+
+.magenta-terracotta {
+    background-position: -128px -768px;
+}
+
+.magenta-wall-banner {
+    background-position: -160px -768px;
+}
+
+.magenta-wool {
+    background-position: -192px -768px;
+}
+
+.magma-block {
+    background-position: -224px -768px;
+}
+
+.magma-cream {
+    background-position: -256px -768px;
+}
+
+.spawn-egg-magma-cube {
+    background-position: -288px -768px;
+}
+
+.mangrove-boat {
+    background-position: -320px -768px;
+}
+
+.mangrove-chest-boat {
+    background-position: -352px -768px;
+}
+
+.mangrove-button {
+    background-position: -384px -768px;
+}
+
+.mangrove-door {
+    background-position: -416px -768px;
+}
+
+.mangrove-fence {
+    background-position: -448px -768px;
+}
+
+.mangrove-fence-gate {
+    background-position: -480px -768px;
+}
+
+.mangrove-hanging-sign {
+    background-position: -512px -768px;
+}
+
+.mangrove-leaves {
+    background-position: -544px -768px;
+}
+
+.mangrove-log {
+    background-position: -576px -768px;
+}
+
+.mangrove-planks {
+    background-position: -608px -768px;
+}
+
+.mangrove-pressure-plate {
+    background-position: -640px -768px;
+}
+
+.mangrove-propagule {
+    background-position: -672px -768px;
+}
+
+.mangrove-roots {
+    background-position: -704px -768px;
+}
+
+.mangrove-sign {
+    background-position: -736px -768px;
+}
+
+.mangrove-slab {
+    background-position: -768px -768px;
+}
+
+.mangrove-stairs {
+    background-position: -800px -768px;
+}
+
+.mangrove-trapdoor {
+    background-position: -832px -768px;
+}
+
+.mangrove-wall-hanging-sign {
+    background-position: -864px -768px;
+}
+
+.mangrove-wall-sign {
+    background-position: -896px -768px;
+}
+
+.mangrove-wood {
+    background-position: -928px -768px;
+}
+
+.filled-map {
+    background-position: -960px -768px;
+}
+
+.medium-amethyst-bud {
+    background-position: -992px -768px;
+}
+
+.melon {
+    background-position: 0 -800px;
+}
+
+.melon-seeds {
+    background-position: -32px -800px;
+}
+
+.melon-slice {
+    background-position: -64px -800px;
+}
+
+.melon-stem {
+    background-position: -96px -800px;
+}
+
+.milk-bucket {
+    background-position: -128px -800px;
+}
+
+.minecart {
+    background-position: -160px -800px;
+}
+
+.chest-minecart {
+    background-position: -192px -800px;
+}
+
+.command-block-minecart {
+    background-position: -224px -800px;
+}
+
+.furnace-minecart {
+    background-position: -256px -800px;
+}
+
+.hopper-minecart {
+    background-position: -288px -800px;
+}
+
+.tnt-minecart {
+    background-position: -320px -800px;
+}
+
+.miner-pottery-sherd {
+    background-position: -352px -800px;
+}
+
+.spawner {
+    background-position: -384px -800px;
+}
+
+.spawn-egg-mooshroom {
+    background-position: -416px -800px;
+}
+
+.moss-block {
+    background-position: -448px -800px;
+}
+
+.moss-carpet {
+    background-position: -480px -800px;
+}
+
+.mossy-cobblestone {
+    background-position: -512px -800px;
+}
+
+.mossy-cobblestone-slab {
+    background-position: -544px -800px;
+}
+
+.mossy-cobblestone-stairs {
+    background-position: -576px -800px;
+}
+
+.mossy-cobblestone-wall {
+    background-position: -608px -800px;
+}
+
+.mossy-stone-brick-slab {
+    background-position: -640px -800px;
+}
+
+.mossy-stone-brick-stairs {
+    background-position: -672px -800px;
+}
+
+.mossy-stone-brick-wall {
+    background-position: -704px -800px;
+}
+
+.mossy-stone-bricks {
+    background-position: -736px -800px;
+}
+
+.mourner-pottery-sherd {
+    background-position: -768px -800px;
+}
+
+.moving-piston {
+    background-position: -800px -800px;
+}
+
+.mud {
+    background-position: -832px -800px;
+}
+
+.mud-brick-slab {
+    background-position: -864px -800px;
+}
+
+.mud-brick-stairs {
+    background-position: -896px -800px;
+}
+
+.mud-brick-wall {
+    background-position: -928px -800px;
+}
+
+.mud-bricks {
+    background-position: -960px -800px;
+}
+
+.muddy-mangrove-roots {
+    background-position: -992px -800px;
+}
+
+.spawn-egg-mule {
+    background-position: 0 -832px;
+}
+
+.mushroom-stem {
+    background-position: -32px -832px;
+}
+
+.mushroom-stew {
+    background-position: -64px -832px;
+}
+
+.music-disc-precipice {
+    background-position: -96px -832px;
+}
+
+.music-disc-relic {
+    background-position: -128px -832px;
+}
+
+.music-disc-11 {
+    background-position: -160px -832px;
+}
+
+.music-disc-13 {
+    background-position: -192px -832px;
+}
+
+.music-disc-blocks {
+    background-position: -224px -832px;
+}
+
+.music-disc-cat {
+    background-position: -256px -832px;
+}
+
+.music-disc-chirp {
+    background-position: -288px -832px;
+}
+
+.music-disc-far {
+    background-position: -320px -832px;
+}
+
+.music-disc-mall {
+    background-position: -352px -832px;
+}
+
+.music-disc-mellohi {
+    background-position: -384px -832px;
+}
+
+.music-disc-stal {
+    background-position: -416px -832px;
+}
+
+.music-disc-strad {
+    background-position: -448px -832px;
+}
+
+.music-disc-wait {
+    background-position: -480px -832px;
+}
+
+.music-disc-ward {
+    background-position: -512px -832px;
+}
+
+.music-disc-creator {
+    background-position: -544px -832px;
+}
+
+.music-disc-creator-music-box {
+    background-position: -576px -832px;
+}
+
+.music-disc-otherside {
+    background-position: -608px -832px;
+}
+
+.music-disc-pigstep {
+    background-position: -640px -832px;
+}
+
+.music-disc-5 {
+    background-position: -672px -832px;
+}
+
+.mycelium {
+    background-position: -704px -832px;
+}
+
+.name-tag {
+    background-position: -736px -832px;
+}
+
+.nautilus-shell {
+    background-position: -768px -832px;
+}
+
+.nether-brick {
+    background-position: -800px -832px;
+}
+
+.nether-brick-fence {
+    background-position: -832px -832px;
+}
+
+.nether-brick-slab {
+    background-position: -864px -832px;
+}
+
+.nether-brick-stairs {
+    background-position: -896px -832px;
+}
+
+.nether-brick-wall {
+    background-position: -928px -832px;
+}
+
+.nether-bricks {
+    background-position: -960px -832px;
+}
+
+.nether-gold-ore {
+    background-position: -992px -832px;
+}
+
+.nether-portal {
+    background-position: 0 -864px;
+}
+
+.quartz {
+    background-position: -32px -864px;
+}
+
+.nether-quartz-ore {
+    background-position: -64px -864px;
+}
+
+.nether-sprouts {
+    background-position: -96px -864px;
+}
+
+.nether-star {
+    background-position: -128px -864px;
+}
+
+.nether-wart {
+    background-position: -160px -864px;
+}
+
+.nether-wart-block {
+    background-position: -192px -864px;
+}
+
+.netherite-axe {
+    background-position: -224px -864px;
+}
+
+.netherite-boots {
+    background-position: -256px -864px;
+}
+
+.netherite-chestplate {
+    background-position: -288px -864px;
+}
+
+.netherite-helmet {
+    background-position: -320px -864px;
+}
+
+.netherite-hoe {
+    background-position: -352px -864px;
+}
+
+.netherite-ingot {
+    background-position: -384px -864px;
+}
+
+.netherite-leggings {
+    background-position: -416px -864px;
+}
+
+.netherite-pickaxe {
+    background-position: -448px -864px;
+}
+
+.netherite-scrap {
+    background-position: -480px -864px;
+}
+
+.netherite-shovel {
+    background-position: -512px -864px;
+}
+
+.netherite-sword {
+    background-position: -544px -864px;
+}
+
+.netherrack {
+    background-position: -576px -864px;
+}
+
+.note-block {
+    background-position: -608px -864px;
+}
+
+.oak-boat {
+    background-position: -640px -864px;
+}
+
+.oak-chest-boat {
+    background-position: -672px -864px;
+}
+
+.oak-button {
+    background-position: -704px -864px;
+}
+
+.oak-door {
+    background-position: -736px -864px;
+}
+
+.oak-fence {
+    background-position: -768px -864px;
+}
+
+.oak-fence-gate {
+    background-position: -800px -864px;
+}
+
+.oak-hanging-sign {
+    background-position: -832px -864px;
+}
+
+.oak-leaves {
+    background-position: -864px -864px;
+}
+
+.oak-log {
+    background-position: -896px -864px;
+}
+
+.oak-planks {
+    background-position: -928px -864px;
+}
+
+.oak-pressure-plate {
+    background-position: -960px -864px;
+}
+
+.oak-sapling {
+    background-position: -992px -864px;
+}
+
+.oak-sign {
+    background-position: 0 -896px;
+}
+
+.oak-slab {
+    background-position: -32px -896px;
+}
+
+.oak-stairs {
+    background-position: -64px -896px;
+}
+
+.oak-trapdoor {
+    background-position: -96px -896px;
+}
+
+.oak-wall-hanging-sign {
+    background-position: -128px -896px;
+}
+
+.oak-wall-sign {
+    background-position: -160px -896px;
+}
+
+.oak-wood {
+    background-position: -192px -896px;
+}
+
+.observer {
+    background-position: -224px -896px;
+}
+
+.obsidian {
+    background-position: -256px -896px;
+}
+
+.spawn-egg-ocelot {
+    background-position: -288px -896px;
+}
+
+.ochre-froglight {
+    background-position: -320px -896px;
+}
+
+.ominous-bottle {
+    background-position: -352px -896px;
+}
+
+.ominous-trial-key {
+    background-position: -384px -896px;
+}
+
+.orange-banner {
+    background-position: -416px -896px;
+}
+
+.orange-bed {
+    background-position: -448px -896px;
+}
+
+.orange-candle {
+    background-position: -480px -896px;
+}
+
+.orange-carpet {
+    background-position: -512px -896px;
+}
+
+.orange-concrete {
+    background-position: -544px -896px;
+}
+
+.orange-concrete-powder {
+    background-position: -576px -896px;
+}
+
+.orange-dye {
+    background-position: -608px -896px;
+}
+
+.orange-glazed-terracotta {
+    background-position: -640px -896px;
+}
+
+.orange-shulker-box {
+    background-position: -672px -896px;
+}
+
+.orange-stained-glass {
+    background-position: -704px -896px;
+}
+
+.orange-stained-glass-pane {
+    background-position: -736px -896px;
+}
+
+.orange-terracotta {
+    background-position: -768px -896px;
+}
+
+.orange-tulip {
+    background-position: -800px -896px;
+}
+
+.orange-wall-banner {
+    background-position: -832px -896px;
+}
+
+.orange-wool {
+    background-position: -864px -896px;
+}
+
+.oxeye-daisy {
+    background-position: -896px -896px;
+}
+
+.oxidized-chiseled-copper {
+    background-position: -928px -896px;
+}
+
+.oxidized-copper {
+    background-position: -960px -896px;
+}
+
+.oxidized-copper-bulb {
+    background-position: -992px -896px;
+}
+
+.oxidized-copper-door {
+    background-position: 0 -928px;
+}
+
+.oxidized-copper-grate {
+    background-position: -32px -928px;
+}
+
+.oxidized-copper-trapdoor {
+    background-position: -64px -928px;
+}
+
+.oxidized-cut-copper {
+    background-position: -96px -928px;
+}
+
+.oxidized-cut-copper-slab {
+    background-position: -128px -928px;
+}
+
+.oxidized-cut-copper-stairs {
+    background-position: -160px -928px;
+}
+
+.packed-ice {
+    background-position: -192px -928px;
+}
+
+.packed-mud {
+    background-position: -224px -928px;
+}
+
+.painting {
+    background-position: -256px -928px;
+}
+
+.spawn-egg-panda {
+    background-position: -288px -928px;
+}
+
+.paper {
+    background-position: -320px -928px;
+}
+
+.spawn-egg-parrot {
+    background-position: -352px -928px;
+}
+
+.pearlescent-froglight {
+    background-position: -384px -928px;
+}
+
+.peony {
+    background-position: -416px -928px;
+}
+
+.petrified-oak-slab {
+    background-position: -448px -928px;
+}
+
+.phantom-membrane {
+    background-position: -480px -928px;
+}
+
+.spawn-egg-phantom {
+    background-position: -512px -928px;
+}
+
+.spawn-egg-pig {
+    background-position: -544px -928px;
+}
+
+.spawn-egg-piglin-brute {
+    background-position: -576px -928px;
+}
+
+.piglin-head {
+    background-position: -608px -928px;
+}
+
+.spawn-egg-piglin {
+    background-position: -640px -928px;
+}
+
+.piglin-wall-head {
+    background-position: -672px -928px;
+}
+
+.spawn-egg-pillager {
+    background-position: -704px -928px;
+}
+
+.pink-banner {
+    background-position: -736px -928px;
+}
+
+.pink-bed {
+    background-position: -768px -928px;
+}
+
+.pink-candle {
+    background-position: -800px -928px;
+}
+
+.pink-carpet {
+    background-position: -832px -928px;
+}
+
+.pink-concrete {
+    background-position: -864px -928px;
+}
+
+.pink-concrete-powder {
+    background-position: -896px -928px;
+}
+
+.pink-dye {
+    background-position: -928px -928px;
+}
+
+.pink-glazed-terracotta {
+    background-position: -960px -928px;
+}
+
+.pink-petals {
+    background-position: -992px -928px;
+}
+
+.pink-shulker-box {
+    background-position: 0 -960px;
+}
+
+.pink-stained-glass {
+    background-position: -32px -960px;
+}
+
+.pink-stained-glass-pane {
+    background-position: -64px -960px;
+}
+
+.pink-terracotta {
+    background-position: -96px -960px;
+}
+
+.pink-tulip {
+    background-position: -128px -960px;
+}
+
+.pink-wall-banner {
+    background-position: -160px -960px;
+}
+
+.pink-wool {
+    background-position: -192px -960px;
+}
+
+.piston {
+    background-position: -224px -960px;
+}
+
+.piston-head {
+    background-position: -256px -960px;
+}
+
+.pitcher-crop {
+    background-position: -288px -960px;
+}
+
+.pitcher-plant {
+    background-position: -320px -960px;
+}
+
+.pitcher-pod {
+    background-position: -352px -960px;
+}
+
+.player-head {
+    background-position: -384px -960px;
+}
+
+.player-wall-head {
+    background-position: -416px -960px;
+}
+
+.plenty-pottery-sherd {
+    background-position: -448px -960px;
+}
+
+.podzol {
+    background-position: -480px -960px;
+}
+
+.pointed-dripstone {
+    background-position: -512px -960px;
+}
+
+.poisonous-potato {
+    background-position: -544px -960px;
+}
+
+.spawn-egg-polar-bear {
+    background-position: -576px -960px;
+}
+
+.polished-andesite {
+    background-position: -608px -960px;
+}
+
+.polished-andesite-slab {
+    background-position: -640px -960px;
+}
+
+.polished-andesite-stairs {
+    background-position: -672px -960px;
+}
+
+.polished-basalt {
+    background-position: -704px -960px;
+}
+
+.polished-blackstone {
+    background-position: -736px -960px;
+}
+
+.polished-blackstone-brick-slab {
+    background-position: -768px -960px;
+}
+
+.polished-blackstone-brick-stairs {
+    background-position: -800px -960px;
+}
+
+.polished-blackstone-brick-wall {
+    background-position: -832px -960px;
+}
+
+.polished-blackstone-bricks {
+    background-position: -864px -960px;
+}
+
+.polished-blackstone-button {
+    background-position: -896px -960px;
+}
+
+.polished-blackstone-pressure-plate {
+    background-position: -928px -960px;
+}
+
+.polished-blackstone-slab {
+    background-position: -960px -960px;
+}
+
+.polished-blackstone-stairs {
+    background-position: -992px -960px;
+}
+
+.polished-blackstone-wall {
+    background-position: 0 -992px;
+}
+
+.polished-deepslate {
+    background-position: -32px -992px;
+}
+
+.polished-deepslate-slab {
+    background-position: -64px -992px;
+}
+
+.polished-deepslate-stairs {
+    background-position: -96px -992px;
+}
+
+.polished-deepslate-wall {
+    background-position: -128px -992px;
+}
+
+.polished-diorite {
+    background-position: -160px -992px;
+}
+
+.polished-diorite-slab {
+    background-position: -192px -992px;
+}
+
+.polished-diorite-stairs {
+    background-position: -224px -992px;
+}
+
+.polished-granite {
+    background-position: -256px -992px;
+}
+
+.polished-granite-slab {
+    background-position: -288px -992px;
+}
+
+.polished-granite-stairs {
+    background-position: -320px -992px;
+}
+
+.polished-tuff {
+    background-position: -352px -992px;
+}
+
+.polished-tuff-slab {
+    background-position: -384px -992px;
+}
+
+.polished-tuff-stairs {
+    background-position: -416px -992px;
+}
+
+.polished-tuff-wall {
+    background-position: -448px -992px;
+}
+
+.popped-chorus-fruit {
+    background-position: -480px -992px;
+}
+
+.poppy {
+    background-position: -512px -992px;
+}
+
+.potato {
+    background-position: -544px -992px;
+}
+
+.potatoes {
+    background-position: -576px -992px;
+}
+
+.potion {
+    background-position: -608px -992px;
+}
+
+.potted-acacia-sapling {
+    background-position: -640px -992px;
+}
+
+.potted-allium {
+    background-position: -672px -992px;
+}
+
+.potted-azalea-bush {
+    background-position: -704px -992px;
+}
+
+.potted-azure-bluet {
+    background-position: -736px -992px;
+}
+
+.potted-bamboo {
+    background-position: -768px -992px;
+}
+
+.potted-birch-sapling {
+    background-position: -800px -992px;
+}
+
+.potted-blue-orchid {
+    background-position: -832px -992px;
+}
+
+.potted-brown-mushroom {
+    background-position: -864px -992px;
+}
+
+.potted-cactus {
+    background-position: -896px -992px;
+}
+
+.potted-cherry-sapling {
+    background-position: -928px -992px;
+}
+
+.potted-cornflower {
+    background-position: -960px -992px;
+}
+
+.potted-crimson-fungus {
+    background-position: -992px -992px;
+}
+
+.potted-crimson-roots {
+    background-position: 0 -1024px;
+}
+
+.potted-dandelion {
+    background-position: -32px -1024px;
+}
+
+.potted-dark-oak-sapling {
+    background-position: -64px -1024px;
+}
+
+.potted-dead-bush {
+    background-position: -96px -1024px;
+}
+
+.potted-fern {
+    background-position: -128px -1024px;
+}
+
+.potted-flowering-azalea-bush {
+    background-position: -160px -1024px;
+}
+
+.potted-jungle-sapling {
+    background-position: -192px -1024px;
+}
+
+.potted-lily-of-the-valley {
+    background-position: -224px -1024px;
+}
+
+.potted-mangrove-propagule {
+    background-position: -256px -1024px;
+}
+
+.potted-oak-sapling {
+    background-position: -288px -1024px;
+}
+
+.potted-orange-tulip {
+    background-position: -320px -1024px;
+}
+
+.potted-oxeye-daisy {
+    background-position: -352px -1024px;
+}
+
+.potted-pink-tulip {
+    background-position: -384px -1024px;
+}
+
+.potted-poppy {
+    background-position: -416px -1024px;
+}
+
+.potted-red-mushroom {
+    background-position: -448px -1024px;
+}
+
+.potted-red-tulip {
+    background-position: -480px -1024px;
+}
+
+.potted-spruce-sapling {
+    background-position: -512px -1024px;
+}
+
+.potted-torchflower {
+    background-position: -544px -1024px;
+}
+
+.potted-warped-fungus {
+    background-position: -576px -1024px;
+}
+
+.potted-warped-roots {
+    background-position: -608px -1024px;
+}
+
+.potted-white-tulip {
+    background-position: -640px -1024px;
+}
+
+.potted-wither-rose {
+    background-position: -672px -1024px;
+}
+
+.powder-snow {
+    background-position: -704px -1024px;
+}
+
+.powder-snow-bucket {
+    background-position: -736px -1024px;
+}
+
+.powder-snow-cauldron {
+    background-position: -768px -1024px;
+}
+
+.powered-rail {
+    background-position: -800px -1024px;
+}
+
+.prismarine {
+    background-position: -832px -1024px;
+}
+
+.prismarine-brick-slab {
+    background-position: -864px -1024px;
+}
+
+.prismarine-brick-stairs {
+    background-position: -896px -1024px;
+}
+
+.prismarine-bricks {
+    background-position: -928px -1024px;
+}
+
+.prismarine-crystals {
+    background-position: -960px -1024px;
+}
+
+.prismarine-shard {
+    background-position: -992px -1024px;
+}
+
+.prismarine-slab {
+    background-position: 0 -1056px;
+}
+
+.prismarine-stairs {
+    background-position: -32px -1056px;
+}
+
+.prismarine-wall {
+    background-position: -64px -1056px;
+}
+
+.prize-pottery-sherd {
+    background-position: -96px -1056px;
+}
+
+.pufferfish {
+    background-position: -128px -1056px;
+}
+
+.spawn-egg-pufferfish {
+    background-position: -160px -1056px;
+}
+
+.pumpkin {
+    background-position: -192px -1056px;
+}
+
+.pumpkin-pie {
+    background-position: -224px -1056px;
+}
+
+.pumpkin-seeds {
+    background-position: -256px -1056px;
+}
+
+.pumpkin-stem {
+    background-position: -288px -1056px;
+}
+
+.purple-banner {
+    background-position: -320px -1056px;
+}
+
+.purple-bed {
+    background-position: -352px -1056px;
+}
+
+.purple-candle {
+    background-position: -384px -1056px;
+}
+
+.purple-carpet {
+    background-position: -416px -1056px;
+}
+
+.purple-concrete {
+    background-position: -448px -1056px;
+}
+
+.purple-concrete-powder {
+    background-position: -480px -1056px;
+}
+
+.purple-dye {
+    background-position: -512px -1056px;
+}
+
+.purple-glazed-terracotta {
+    background-position: -544px -1056px;
+}
+
+.purple-shulker-box {
+    background-position: -576px -1056px;
+}
+
+.purple-stained-glass {
+    background-position: -608px -1056px;
+}
+
+.purple-stained-glass-pane {
+    background-position: -640px -1056px;
+}
+
+.purple-terracotta {
+    background-position: -672px -1056px;
+}
+
+.purple-wall-banner {
+    background-position: -704px -1056px;
+}
+
+.purple-wool {
+    background-position: -736px -1056px;
+}
+
+.purpur-block {
+    background-position: -768px -1056px;
+}
+
+.purpur-pillar {
+    background-position: -800px -1056px;
+}
+
+.purpur-slab {
+    background-position: -832px -1056px;
+}
+
+.purpur-stairs {
+    background-position: -864px -1056px;
+}
+
+.quartz-bricks {
+    background-position: -896px -1056px;
+}
+
+.quartz-pillar {
+    background-position: -928px -1056px;
+}
+
+.quartz-slab {
+    background-position: -960px -1056px;
+}
+
+.quartz-stairs {
+    background-position: -992px -1056px;
+}
+
+.rabbit-hide {
+    background-position: 0 -1088px;
+}
+
+.spawn-egg-rabbit {
+    background-position: -32px -1088px;
+}
+
+.rabbit-stew {
+    background-position: -64px -1088px;
+}
+
+.rabbit-foot {
+    background-position: -96px -1088px;
+}
+
+.rail {
+    background-position: -128px -1088px;
+}
+
+.spawn-egg-ravager {
+    background-position: -160px -1088px;
+}
+
+.beef {
+    background-position: -192px -1088px;
+}
+
+.chicken {
+    background-position: -224px -1088px;
+}
+
+.cod {
+    background-position: -256px -1088px;
+}
+
+.raw-copper {
+    background-position: -288px -1088px;
+}
+
+.raw-gold {
+    background-position: -320px -1088px;
+}
+
+.raw-iron {
+    background-position: -352px -1088px;
+}
+
+.mutton {
+    background-position: -384px -1088px;
+}
+
+.porkchop {
+    background-position: -416px -1088px;
+}
+
+.rabbit {
+    background-position: -448px -1088px;
+}
+
+.salmon {
+    background-position: -480px -1088px;
+}
+
+.recovery-compass {
+    background-position: -512px -1088px;
+}
+
+.red-banner {
+    background-position: -544px -1088px;
+}
+
+.red-bed {
+    background-position: -576px -1088px;
+}
+
+.red-candle {
+    background-position: -608px -1088px;
+}
+
+.red-carpet {
+    background-position: -640px -1088px;
+}
+
+.red-concrete {
+    background-position: -672px -1088px;
+}
+
+.red-concrete-powder {
+    background-position: -704px -1088px;
+}
+
+.red-dye {
+    background-position: -736px -1088px;
+}
+
+.red-glazed-terracotta {
+    background-position: -768px -1088px;
+}
+
+.red-mushroom {
+    background-position: -800px -1088px;
+}
+
+.red-mushroom-block {
+    background-position: -832px -1088px;
+}
+
+.red-nether-brick-slab {
+    background-position: -864px -1088px;
+}
+
+.red-nether-brick-stairs {
+    background-position: -896px -1088px;
+}
+
+.red-nether-brick-wall {
+    background-position: -928px -1088px;
+}
+
+.red-nether-bricks {
+    background-position: -960px -1088px;
+}
+
+.red-sand {
+    background-position: -992px -1088px;
+}
+
+.red-sandstone {
+    background-position: 0 -1120px;
+}
+
+.red-sandstone-slab {
+    background-position: -32px -1120px;
+}
+
+.red-sandstone-stairs {
+    background-position: -64px -1120px;
+}
+
+.red-sandstone-wall {
+    background-position: -96px -1120px;
+}
+
+.red-shulker-box {
+    background-position: -128px -1120px;
+}
+
+.red-stained-glass {
+    background-position: -160px -1120px;
+}
+
+.red-stained-glass-pane {
+    background-position: -192px -1120px;
+}
+
+.red-terracotta {
+    background-position: -224px -1120px;
+}
+
+.red-tulip {
+    background-position: -256px -1120px;
+}
+
+.red-wall-banner {
+    background-position: -288px -1120px;
+}
+
+.red-wool {
+    background-position: -320px -1120px;
+}
+
+.comparator {
+    background-position: -352px -1120px;
+}
+
+.redstone {
+    background-position: -384px -1120px;
+}
+
+.redstone-lamp {
+    background-position: -416px -1120px;
+}
+
+.redstone-ore {
+    background-position: -448px -1120px;
+}
+
+.repeater {
+    background-position: -480px -1120px;
+}
+
+.redstone-torch {
+    background-position: -512px -1120px;
+}
+
+.redstone-wall-torch {
+    background-position: -544px -1120px;
+}
+
+.redstone-wire {
+    background-position: -576px -1120px;
+}
+
+.reinforced-deepslate {
+    background-position: -608px -1120px;
+}
+
+.repeating-command-block {
+    background-position: -640px -1120px;
+}
+
+.respawn-anchor {
+    background-position: -672px -1120px;
+}
+
+.rooted-dirt {
+    background-position: -704px -1120px;
+}
+
+.rose-bush {
+    background-position: -736px -1120px;
+}
+
+.rotten-flesh {
+    background-position: -768px -1120px;
+}
+
+.saddle {
+    background-position: -800px -1120px;
+}
+
+.spawn-egg-salmon {
+    background-position: -832px -1120px;
+}
+
+.sand {
+    background-position: -864px -1120px;
+}
+
+.sandstone {
+    background-position: -896px -1120px;
+}
+
+.sandstone-slab {
+    background-position: -928px -1120px;
+}
+
+.sandstone-stairs {
+    background-position: -960px -1120px;
+}
+
+.sandstone-wall {
+    background-position: -992px -1120px;
+}
+
+.scaffolding {
+    background-position: 0 -1152px;
+}
+
+.scrape-pottery-sherd {
+    background-position: -32px -1152px;
+}
+
+.sculk {
+    background-position: -64px -1152px;
+}
+
+.sculk-catalyst {
+    background-position: -96px -1152px;
+}
+
+.sculk-sensor {
+    background-position: -128px -1152px;
+}
+
+.sculk-shrieker {
+    background-position: -160px -1152px;
+}
+
+.sculk-vein {
+    background-position: -192px -1152px;
+}
+
+.scute {
+    background-position: -224px -1152px;
+}
+
+.sea-lantern {
+    background-position: -256px -1152px;
+}
+
+.sea-pickle {
+    background-position: -288px -1152px;
+}
+
+.seagrass {
+    background-position: -320px -1152px;
+}
+
+.sheaf-pottery-sherd {
+    background-position: -352px -1152px;
+}
+
+.shears {
+    background-position: -384px -1152px;
+}
+
+.spawn-egg-sheep {
+    background-position: -416px -1152px;
+}
+
+.shelter-pottery-sherd {
+    background-position: -448px -1152px;
+}
+
+.shield {
+    background-position: -480px -1152px;
+}
+
+.shroomlight {
+    background-position: -512px -1152px;
+}
+
+.shulker-box {
+    background-position: -544px -1152px;
+}
+
+.shulker-shell {
+    background-position: -576px -1152px;
+}
+
+.spawn-egg-shulker {
+    background-position: -608px -1152px;
+}
+
+.spawn-egg-silverfish {
+    background-position: -640px -1152px;
+}
+
+.spawn-egg-skeleton-horse {
+    background-position: -672px -1152px;
+}
+
+.skeleton-skull {
+    background-position: -704px -1152px;
+}
+
+.spawn-egg-skeleton {
+    background-position: -736px -1152px;
+}
+
+.skeleton-wall-skull {
+    background-position: -768px -1152px;
+}
+
+.skull-pottery-sherd {
+    background-position: -800px -1152px;
+}
+
+.slime-block {
+    background-position: -832px -1152px;
+}
+
+.spawn-egg-slime {
+    background-position: -864px -1152px;
+}
+
+.slime-ball {
+    background-position: -896px -1152px;
+}
+
+.small-amethyst-bud {
+    background-position: -928px -1152px;
+}
+
+.small-dripleaf {
+    background-position: -960px -1152px;
+}
+
+.smithing-table {
+    background-position: -992px -1152px;
+}
+
+.wayfinder-armor-trim-smithing-template {
+    background-position: 0 -1184px;
+}
+
+.eye-armor-trim-smithing-template {
+    background-position: -32px -1184px;
+}
+
+.wild-armor-trim-smithing-template {
+    background-position: -64px -1184px;
+}
+
+.raiser-armor-trim-smithing-template {
+    background-position: -96px -1184px;
+}
+
+.host-armor-trim-smithing-template {
+    background-position: -128px -1184px;
+}
+
+.rib-armor-trim-smithing-template {
+    background-position: -160px -1184px;
+}
+
+.sentry-armor-trim-smithing-template {
+    background-position: -192px -1184px;
+}
+
+.flow-armor-trim-smithing-template {
+    background-position: -224px -1184px;
+}
+
+.shaper-armor-trim-smithing-template {
+    background-position: -256px -1184px;
+}
+
+.vex-armor-trim-smithing-template {
+    background-position: -288px -1184px;
+}
+
+.bolt-armor-trim-smithing-template {
+    background-position: -320px -1184px;
+}
+
+.netherite-upgrade-smithing-template {
+    background-position: -352px -1184px;
+}
+
+.coast-armor-trim-smithing-template {
+    background-position: -384px -1184px;
+}
+
+.ward-armor-trim-smithing-template {
+    background-position: -416px -1184px;
+}
+
+.dune-armor-trim-smithing-template {
+    background-position: -448px -1184px;
+}
+
+.spire-armor-trim-smithing-template {
+    background-position: -480px -1184px;
+}
+
+.tide-armor-trim-smithing-template {
+    background-position: -512px -1184px;
+}
+
+.snout-armor-trim-smithing-template {
+    background-position: -544px -1184px;
+}
+
+.silence-armor-trim-smithing-template {
+    background-position: -576px -1184px;
+}
+
+.smoker {
+    background-position: -608px -1184px;
+}
+
+.smooth-basalt {
+    background-position: -640px -1184px;
+}
+
+.smooth-quartz {
+    background-position: -672px -1184px;
+}
+
+.smooth-quartz-slab {
+    background-position: -704px -1184px;
+}
+
+.smooth-quartz-stairs {
+    background-position: -736px -1184px;
+}
+
+.smooth-red-sandstone {
+    background-position: -768px -1184px;
+}
+
+.smooth-red-sandstone-slab {
+    background-position: -800px -1184px;
+}
+
+.smooth-red-sandstone-stairs {
+    background-position: -832px -1184px;
+}
+
+.smooth-sandstone {
+    background-position: -864px -1184px;
+}
+
+.smooth-sandstone-slab {
+    background-position: -896px -1184px;
+}
+
+.smooth-sandstone-stairs {
+    background-position: -928px -1184px;
+}
+
+.smooth-stone {
+    background-position: -960px -1184px;
+}
+
+.smooth-stone-slab {
+    background-position: -992px -1184px;
+}
+
+.sniffer-egg {
+    background-position: 0 -1216px;
+}
+
+.spawn-egg-sniffer {
+    background-position: -32px -1216px;
+}
+
+.snort-pottery-sherd {
+    background-position: -64px -1216px;
+}
+
+.snow {
+    background-position: -96px -1216px;
+}
+
+.snow-block {
+    background-position: -128px -1216px;
+}
+
+.spawn-egg-snow-golem {
+    background-position: -160px -1216px;
+}
+
+.snowball {
+    background-position: -192px -1216px;
+}
+
+.soul-campfire {
+    background-position: -224px -1216px;
+}
+
+.soul-fire {
+    background-position: -256px -1216px;
+}
+
+.soul-lantern {
+    background-position: -288px -1216px;
+}
+
+.soul-sand {
+    background-position: -320px -1216px;
+}
+
+.soul-soil {
+    background-position: -352px -1216px;
+}
+
+.soul-torch {
+    background-position: -384px -1216px;
+}
+
+.soul-wall-torch {
+    background-position: -416px -1216px;
+}
+
+.spectral-arrow {
+    background-position: -448px -1216px;
+}
+
+.spider-eye {
+    background-position: -480px -1216px;
+}
+
+.spawn-egg-spider {
+    background-position: -512px -1216px;
+}
+
+.splash-potion {
+    background-position: -544px -1216px;
+}
+
+.sponge {
+    background-position: -576px -1216px;
+}
+
+.spore-blossom {
+    background-position: -608px -1216px;
+}
+
+.spruce-boat {
+    background-position: -640px -1216px;
+}
+
+.spruce-chest-boat {
+    background-position: -672px -1216px;
+}
+
+.spruce-button {
+    background-position: -704px -1216px;
+}
+
+.spruce-door {
+    background-position: -736px -1216px;
+}
+
+.spruce-fence {
+    background-position: -768px -1216px;
+}
+
+.spruce-fence-gate {
+    background-position: -800px -1216px;
+}
+
+.spruce-hanging-sign {
+    background-position: -832px -1216px;
+}
+
+.spruce-leaves {
+    background-position: -864px -1216px;
+}
+
+.spruce-log {
+    background-position: -896px -1216px;
+}
+
+.spruce-planks {
+    background-position: -928px -1216px;
+}
+
+.spruce-pressure-plate {
+    background-position: -960px -1216px;
+}
+
+.spruce-sapling {
+    background-position: -992px -1216px;
+}
+
+.spruce-sign {
+    background-position: 0 -1248px;
+}
+
+.spruce-slab {
+    background-position: -32px -1248px;
+}
+
+.spruce-stairs {
+    background-position: -64px -1248px;
+}
+
+.spruce-trapdoor {
+    background-position: -96px -1248px;
+}
+
+.spruce-wall-hanging-sign {
+    background-position: -128px -1248px;
+}
+
+.spruce-wall-sign {
+    background-position: -160px -1248px;
+}
+
+.spruce-wood {
+    background-position: -192px -1248px;
+}
+
+.spyglass {
+    background-position: -224px -1248px;
+}
+
+.spawn-egg-squid {
+    background-position: -256px -1248px;
+}
+
+.cooked-beef {
+    background-position: -288px -1248px;
+}
+
+.stick {
+    background-position: -320px -1248px;
+}
+
+.sticky-piston {
+    background-position: -352px -1248px;
+}
+
+.stone {
+    background-position: -384px -1248px;
+}
+
+.stone-axe {
+    background-position: -416px -1248px;
+}
+
+.stone-brick-slab {
+    background-position: -448px -1248px;
+}
+
+.stone-brick-stairs {
+    background-position: -480px -1248px;
+}
+
+.stone-brick-wall {
+    background-position: -512px -1248px;
+}
+
+.stone-bricks {
+    background-position: -544px -1248px;
+}
+
+.stone-button {
+    background-position: -576px -1248px;
+}
+
+.stone-hoe {
+    background-position: -608px -1248px;
+}
+
+.stone-pickaxe {
+    background-position: -640px -1248px;
+}
+
+.stone-pressure-plate {
+    background-position: -672px -1248px;
+}
+
+.stone-shovel {
+    background-position: -704px -1248px;
+}
+
+.stone-slab {
+    background-position: -736px -1248px;
+}
+
+.stone-stairs {
+    background-position: -768px -1248px;
+}
+
+.stone-sword {
+    background-position: -800px -1248px;
+}
+
+.stonecutter {
+    background-position: -832px -1248px;
+}
+
+.spawn-egg-stray {
+    background-position: -864px -1248px;
+}
+
+.spawn-egg-strider {
+    background-position: -896px -1248px;
+}
+
+.string {
+    background-position: -928px -1248px;
+}
+
+.stripped-acacia-log {
+    background-position: -960px -1248px;
+}
+
+.stripped-acacia-wood {
+    background-position: -992px -1248px;
+}
+
+.stripped-birch-log {
+    background-position: 0 -1280px;
+}
+
+.stripped-birch-wood {
+    background-position: -32px -1280px;
+}
+
+.stripped-cherry-log {
+    background-position: -64px -1280px;
+}
+
+.stripped-cherry-wood {
+    background-position: -96px -1280px;
+}
+
+.stripped-crimson-hyphae {
+    background-position: -128px -1280px;
+}
+
+.stripped-crimson-stem {
+    background-position: -160px -1280px;
+}
+
+.stripped-dark-oak-log {
+    background-position: -192px -1280px;
+}
+
+.stripped-dark-oak-wood {
+    background-position: -224px -1280px;
+}
+
+.stripped-jungle-log {
+    background-position: -256px -1280px;
+}
+
+.stripped-jungle-wood {
+    background-position: -288px -1280px;
+}
+
+.stripped-mangrove-log {
+    background-position: -320px -1280px;
+}
+
+.stripped-mangrove-wood {
+    background-position: -352px -1280px;
+}
+
+.stripped-oak-log {
+    background-position: -384px -1280px;
+}
+
+.stripped-oak-wood {
+    background-position: -416px -1280px;
+}
+
+.stripped-spruce-log {
+    background-position: -448px -1280px;
+}
+
+.stripped-spruce-wood {
+    background-position: -480px -1280px;
+}
+
+.stripped-warped-hyphae {
+    background-position: -512px -1280px;
+}
+
+.stripped-warped-stem {
+    background-position: -544px -1280px;
+}
+
+.structure-block {
+    background-position: -576px -1280px;
+}
+
+.structure-void {
+    background-position: -608px -1280px;
+}
+
+.sugar {
+    background-position: -640px -1280px;
+}
+
+.sugar-cane {
+    background-position: -672px -1280px;
+}
+
+.sunflower {
+    background-position: -704px -1280px;
+}
+
+.suspicious-gravel {
+    background-position: -736px -1280px;
+}
+
+.suspicious-sand {
+    background-position: -768px -1280px;
+}
+
+.suspicious-stew {
+    background-position: -800px -1280px;
+}
+
+.sweet-berries {
+    background-position: -832px -1280px;
+}
+
+.sweet-berry-bush {
+    background-position: -864px -1280px;
+}
+
+.spawn-egg-tadpole {
+    background-position: -896px -1280px;
+}
+
+.tall-grass {
+    background-position: -928px -1280px;
+}
+
+.tall-seagrass {
+    background-position: -960px -1280px;
+}
+
+.target {
+    background-position: -992px -1280px;
+}
+
+.terracotta {
+    background-position: 0 -1312px;
+}
+
+.tinted-glass {
+    background-position: -32px -1312px;
+}
+
+.tipped-arrow {
+    background-position: -64px -1312px;
+}
+
+.tnt {
+    background-position: -96px -1312px;
+}
+
+.torch {
+    background-position: -128px -1312px;
+}
+
+.torchflower {
+    background-position: -160px -1312px;
+}
+
+.torchflower-crop {
+    background-position: -192px -1312px;
+}
+
+.torchflower-seeds {
+    background-position: -224px -1312px;
+}
+
+.totem-of-undying {
+    background-position: -256px -1312px;
+}
+
+.spawn-egg-trader-llama {
+    background-position: -288px -1312px;
+}
+
+.trapped-chest {
+    background-position: -320px -1312px;
+}
+
+.trial-key {
+    background-position: -352px -1312px;
+}
+
+.trial-spawner {
+    background-position: -384px -1312px;
+}
+
+.trident {
+    background-position: -416px -1312px;
+}
+
+.tripwire {
+    background-position: -448px -1312px;
+}
+
+.tripwire-hook {
+    background-position: -480px -1312px;
+}
+
+.tropical-fish {
+    background-position: -512px -1312px;
+}
+
+.spawn-egg-tropical-fish {
+    background-position: -544px -1312px;
+}
+
+.tube-coral {
+    background-position: -576px -1312px;
+}
+
+.tube-coral-block {
+    background-position: -608px -1312px;
+}
+
+.tube-coral-fan {
+    background-position: -640px -1312px;
+}
+
+.tube-coral-wall-fan {
+    background-position: -672px -1312px;
+}
+
+.tuff {
+    background-position: -704px -1312px;
+}
+
+.tuff-brick-slab {
+    background-position: -736px -1312px;
+}
+
+.tuff-brick-stairs {
+    background-position: -768px -1312px;
+}
+
+.tuff-brick-wall {
+    background-position: -800px -1312px;
+}
+
+.tuff-bricks {
+    background-position: -832px -1312px;
+}
+
+.tuff-slab {
+    background-position: -864px -1312px;
+}
+
+.tuff-stairs {
+    background-position: -896px -1312px;
+}
+
+.tuff-wall {
+    background-position: -928px -1312px;
+}
+
+.turtle-egg {
+    background-position: -960px -1312px;
+}
+
+.turtle-helmet {
+    background-position: -992px -1312px;
+}
+
+.spawn-egg-turtle {
+    background-position: 0 -1344px;
+}
+
+.twisting-vines {
+    background-position: -32px -1344px;
+}
+
+.twisting-vines-plant {
+    background-position: -64px -1344px;
+}
+
+.vault {
+    background-position: -96px -1344px;
+}
+
+.verdant-froglight {
+    background-position: -128px -1344px;
+}
+
+.spawn-egg-vex {
+    background-position: -160px -1344px;
+}
+
+.spawn-egg-villager {
+    background-position: -192px -1344px;
+}
+
+.spawn-egg-vindicator {
+    background-position: -224px -1344px;
+}
+
+.vine {
+    background-position: -256px -1344px;
+}
+
+.void-air {
+    background-position: -288px -1344px;
+}
+
+.wall-torch {
+    background-position: -320px -1344px;
+}
+
+.spawn-egg-wandering-trader {
+    background-position: -352px -1344px;
+}
+
+.spawn-egg-warden {
+    background-position: -384px -1344px;
+}
+
+.warped-button {
+    background-position: -416px -1344px;
+}
+
+.warped-door {
+    background-position: -448px -1344px;
+}
+
+.warped-fence {
+    background-position: -480px -1344px;
+}
+
+.warped-fence-gate {
+    background-position: -512px -1344px;
+}
+
+.warped-fungus {
+    background-position: -544px -1344px;
+}
+
+.warped-fungus-on-a-stick {
+    background-position: -576px -1344px;
+}
+
+.warped-hanging-sign {
+    background-position: -608px -1344px;
+}
+
+.warped-hyphae {
+    background-position: -640px -1344px;
+}
+
+.warped-nylium {
+    background-position: -672px -1344px;
+}
+
+.warped-planks {
+    background-position: -704px -1344px;
+}
+
+.warped-pressure-plate {
+    background-position: -736px -1344px;
+}
+
+.warped-roots {
+    background-position: -768px -1344px;
+}
+
+.warped-sign {
+    background-position: -800px -1344px;
+}
+
+.warped-slab {
+    background-position: -832px -1344px;
+}
+
+.warped-stairs {
+    background-position: -864px -1344px;
+}
+
+.warped-stem {
+    background-position: -896px -1344px;
+}
+
+.warped-trapdoor {
+    background-position: -928px -1344px;
+}
+
+.warped-wall-hanging-sign {
+    background-position: -960px -1344px;
+}
+
+.warped-wall-sign {
+    background-position: -992px -1344px;
+}
+
+.warped-wart-block {
+    background-position: 0 -1376px;
+}
+
+.water {
+    background-position: -32px -1376px;
+}
+
+.water-bucket {
+    background-position: -64px -1376px;
+}
+
+.water-cauldron {
+    background-position: -96px -1376px;
+}
+
+.waxed-copper-block {
+    background-position: -128px -1376px;
+}
+
+.waxed-chiseled-copper {
+    background-position: -160px -1376px;
+}
+
+.waxed-copper-bulb {
+    background-position: -192px -1376px;
+}
+
+.waxed-copper-door {
+    background-position: -224px -1376px;
+}
+
+.waxed-copper-grate {
+    background-position: -256px -1376px;
+}
+
+.waxed-copper-trapdoor {
+    background-position: -288px -1376px;
+}
+
+.waxed-cut-copper {
+    background-position: -320px -1376px;
+}
+
+.waxed-cut-copper-slab {
+    background-position: -352px -1376px;
+}
+
+.waxed-cut-copper-stairs {
+    background-position: -384px -1376px;
+}
+
+.waxed-exposed-chiseled-copper {
+    background-position: -416px -1376px;
+}
+
+.waxed-exposed-copper {
+    background-position: -448px -1376px;
+}
+
+.waxed-exposed-copper-bulb {
+    background-position: -480px -1376px;
+}
+
+.waxed-exposed-copper-door {
+    background-position: -512px -1376px;
+}
+
+.waxed-exposed-copper-grate {
+    background-position: -544px -1376px;
+}
+
+.waxed-exposed-copper-trapdoor {
+    background-position: -576px -1376px;
+}
+
+.waxed-exposed-cut-copper {
+    background-position: -608px -1376px;
+}
+
+.waxed-exposed-cut-copper-slab {
+    background-position: -640px -1376px;
+}
+
+.waxed-exposed-cut-copper-stairs {
+    background-position: -672px -1376px;
+}
+
+.waxed-oxidized-chiseled-copper {
+    background-position: -704px -1376px;
+}
+
+.waxed-oxidized-copper {
+    background-position: -736px -1376px;
+}
+
+.waxed-oxidized-copper-bulb {
+    background-position: -768px -1376px;
+}
+
+.waxed-oxidized-copper-door {
+    background-position: -800px -1376px;
+}
+
+.waxed-oxidized-copper-grate {
+    background-position: -832px -1376px;
+}
+
+.waxed-oxidized-copper-trapdoor {
+    background-position: -864px -1376px;
+}
+
+.waxed-oxidized-cut-copper {
+    background-position: -896px -1376px;
+}
+
+.waxed-oxidized-cut-copper-slab {
+    background-position: -928px -1376px;
+}
+
+.waxed-oxidized-cut-copper-stairs {
+    background-position: -960px -1376px;
+}
+
+.waxed-weathered-chiseled-copper {
+    background-position: -992px -1376px;
+}
+
+.waxed-weathered-copper {
+    background-position: 0 -1408px;
+}
+
+.waxed-weathered-copper-bulb {
+    background-position: -32px -1408px;
+}
+
+.waxed-weathered-copper-door {
+    background-position: -64px -1408px;
+}
+
+.waxed-weathered-copper-grate {
+    background-position: -96px -1408px;
+}
+
+.waxed-weathered-copper-trapdoor {
+    background-position: -128px -1408px;
+}
+
+.waxed-weathered-cut-copper {
+    background-position: -160px -1408px;
+}
+
+.waxed-weathered-cut-copper-slab {
+    background-position: -192px -1408px;
+}
+
+.waxed-weathered-cut-copper-stairs {
+    background-position: -224px -1408px;
+}
+
+.weathered-chiseled-copper {
+    background-position: -256px -1408px;
+}
+
+.weathered-copper {
+    background-position: -288px -1408px;
+}
+
+.weathered-copper-bulb {
+    background-position: -320px -1408px;
+}
+
+.weathered-copper-door {
+    background-position: -352px -1408px;
+}
+
+.weathered-copper-grate {
+    background-position: -384px -1408px;
+}
+
+.weathered-copper-trapdoor {
+    background-position: -416px -1408px;
+}
+
+.weathered-cut-copper {
+    background-position: -448px -1408px;
+}
+
+.weathered-cut-copper-slab {
+    background-position: -480px -1408px;
+}
+
+.weathered-cut-copper-stairs {
+    background-position: -512px -1408px;
+}
+
+.weeping-vines {
+    background-position: -544px -1408px;
+}
+
+.weeping-vines-plant {
+    background-position: -576px -1408px;
+}
+
+.wet-sponge {
+    background-position: -608px -1408px;
+}
+
+.wheat {
+    background-position: -640px -1408px;
+}
+
+.wheat-seeds {
+    background-position: -672px -1408px;
+}
+
+.white-banner {
+    background-position: -704px -1408px;
+}
+
+.white-bed {
+    background-position: -736px -1408px;
+}
+
+.white-candle {
+    background-position: -768px -1408px;
+}
+
+.white-carpet {
+    background-position: -800px -1408px;
+}
+
+.white-concrete {
+    background-position: -832px -1408px;
+}
+
+.white-concrete-powder {
+    background-position: -864px -1408px;
+}
+
+.white-dye {
+    background-position: -896px -1408px;
+}
+
+.white-glazed-terracotta {
+    background-position: -928px -1408px;
+}
+
+.white-shulker-box {
+    background-position: -960px -1408px;
+}
+
+.white-stained-glass {
+    background-position: -992px -1408px;
+}
+
+.white-stained-glass-pane {
+    background-position: 0 -1440px;
+}
+
+.white-terracotta {
+    background-position: -32px -1440px;
+}
+
+.white-tulip {
+    background-position: -64px -1440px;
+}
+
+.white-wall-banner {
+    background-position: -96px -1440px;
+}
+
+.white-wool {
+    background-position: -128px -1440px;
+}
+
+.wind-charge {
+    background-position: -160px -1440px;
+}
+
+.spawn-egg-witch {
+    background-position: -192px -1440px;
+}
+
+.wither-rose {
+    background-position: -224px -1440px;
+}
+
+.wither-skeleton-skull {
+    background-position: -256px -1440px;
+}
+
+.spawn-egg-wither-skeleton {
+    background-position: -288px -1440px;
+}
+
+.wither-skeleton-wall-skull {
+    background-position: -320px -1440px;
+}
+
+.spawn-egg-wither {
+    background-position: -352px -1440px;
+}
+
+.wolf-armor {
+    background-position: -384px -1440px;
+}
+
+.spawn-egg-wolf {
+    background-position: -416px -1440px;
+}
+
+.wooden-axe {
+    background-position: -448px -1440px;
+}
+
+.wooden-hoe {
+    background-position: -480px -1440px;
+}
+
+.wooden-pickaxe {
+    background-position: -512px -1440px;
+}
+
+.wooden-shovel {
+    background-position: -544px -1440px;
+}
+
+.wooden-sword {
+    background-position: -576px -1440px;
+}
+
+.written-book {
+    background-position: -608px -1440px;
+}
+
+.yellow-banner {
+    background-position: -640px -1440px;
+}
+
+.yellow-bed {
+    background-position: -672px -1440px;
+}
+
+.yellow-candle {
+    background-position: -704px -1440px;
+}
+
+.yellow-carpet {
+    background-position: -736px -1440px;
+}
+
+.yellow-concrete {
+    background-position: -768px -1440px;
+}
+
+.yellow-concrete-powder {
+    background-position: -800px -1440px;
+}
+
+.yellow-dye {
+    background-position: -832px -1440px;
+}
+
+.yellow-glazed-terracotta {
+    background-position: -864px -1440px;
+}
+
+.yellow-shulker-box {
+    background-position: -896px -1440px;
+}
+
+.yellow-stained-glass {
+    background-position: -928px -1440px;
+}
+
+.yellow-stained-glass-pane {
+    background-position: -960px -1440px;
+}
+
+.yellow-terracotta {
+    background-position: -992px -1440px;
+}
+
+.yellow-wall-banner {
+    background-position: 0 -1472px;
+}
+
+.yellow-wool {
+    background-position: -32px -1472px;
+}
+
+.spawn-egg-zoglin {
+    background-position: -64px -1472px;
+}
+
+.zombie-head {
+    background-position: -96px -1472px;
+}
+
+.spawn-egg-zombie-horse {
+    background-position: -128px -1472px;
+}
+
+.spawn-egg-zombie {
+    background-position: -160px -1472px;
+}
+
+.spawn-egg-zombie-villager {
+    background-position: -192px -1472px;
+}
+
+.zombie-wall-head {
+    background-position: -224px -1472px;
+}
+
+.spawn-egg-zombified-piglin {
+    background-position: -256px -1472px;
+}
+
+.mob-allay-face {
+    background-position: -288px -1472px;
+}
+
+.mob-armadillo-face {
+    background-position: -320px -1472px;
+}
+
+.mob-axolotl-face {
+    background-position: -352px -1472px;
+}
+
+.mob-bat-face {
+    background-position: -384px -1472px;
+}
+
+.mob-bee-face {
+    background-position: -416px -1472px;
+}
+
+.mob-blaze-face {
+    background-position: -448px -1472px;
+}
+
+.mob-bogged-face {
+    background-position: -480px -1472px;
+}
+
+.mob-breeze-face {
+    background-position: -512px -1472px;
+}
+
+.mob-camel-face {
+    background-position: -544px -1472px;
+}
+
+.mob-cat-face {
+    background-position: -576px -1472px;
+}
+
+.mob-cave-spider-face {
+    background-position: -608px -1472px;
+}
+
+.mob-chicken-face {
+    background-position: -640px -1472px;
+}
+
+.mob-cod-face {
+    background-position: -672px -1472px;
+}
+
+.mob-cow-face {
+    background-position: -704px -1472px;
+}
+
+.mob-creeper-face {
+    background-position: -736px -1472px;
+}
+
+.mob-dolphin-face {
+    background-position: -768px -1472px;
+}
+
+.mob-donkey-face {
+    background-position: -800px -1472px;
+}
+
+.mob-drowned-face {
+    background-position: -832px -1472px;
+}
+
+.mob-elder-guardian-face {
+    background-position: -864px -1472px;
+}
+
+.mob-ender-dragon-face {
+    background-position: -896px -1472px;
+}
+
+.mob-enderman-face {
+    background-position: -928px -1472px;
+}
+
+.mob-endermite-face {
+    background-position: -960px -1472px;
+}
+
+.mob-evoker-face {
+    background-position: -992px -1472px;
+}
+
+.mob-fox-face {
+    background-position: 0 -1504px;
+}
+
+.mob-frog-face {
+    background-position: -32px -1504px;
+}
+
+.mob-ghast-face {
+    background-position: -64px -1504px;
+}
+
+.mob-giant-face {
+    background-position: -96px -1504px;
+}
+
+.mob-glow-squid-face {
+    background-position: -128px -1504px;
+}
+
+.mob-goat-face {
+    background-position: -160px -1504px;
+}
+
+.mob-guardian-face {
+    background-position: -192px -1504px;
+}
+
+.mob-hoglin-face {
+    background-position: -224px -1504px;
+}
+
+.mob-horse-face {
+    background-position: -256px -1504px;
+}
+
+.mob-husk-face {
+    background-position: -288px -1504px;
+}
+
+.mob-illusioner-face {
+    background-position: -320px -1504px;
+}
+
+.mob-iron-golem-face {
+    background-position: -352px -1504px;
+}
+
+.mob-llama-face {
+    background-position: -384px -1504px;
+}
+
+.mob-magma-cube-face {
+    background-position: -416px -1504px;
+}
+
+.mob-mooshroom-face {
+    background-position: -448px -1504px;
+}
+
+.mob-mule-face {
+    background-position: -480px -1504px;
+}
+
+.mob-ocelot-face {
+    background-position: -512px -1504px;
+}
+
+.mob-panda-face {
+    background-position: -544px -1504px;
+}
+
+.mob-parrot-face {
+    background-position: -576px -1504px;
+}
+
+.mob-phantom-face {
+    background-position: -608px -1504px;
+}
+
+.mob-pig-face {
+    background-position: -640px -1504px;
+}
+
+.mob-piglin-face {
+    background-position: -672px -1504px;
+}
+
+.mob-piglin-brute-face {
+    background-position: -704px -1504px;
+}
+
+.mob-pillager-face {
+    background-position: -736px -1504px;
+}
+
+.mob-polar-bear-face {
+    background-position: -768px -1504px;
+}
+
+.mob-pufferfish-face {
+    background-position: -800px -1504px;
+}
+
+.mob-rabbit-face {
+    background-position: -832px -1504px;
+}
+
+.mob-ravager-face {
+    background-position: -864px -1504px;
+}
+
+.mob-salmon-face {
+    background-position: -896px -1504px;
+}
+
+.mob-sheep-face {
+    background-position: -928px -1504px;
+}
+
+.mob-shulker-face {
+    background-position: -960px -1504px;
+}
+
+.mob-silverfish-face {
+    background-position: -992px -1504px;
+}
+
+.mob-skeleton-face {
+    background-position: 0 -1536px;
+}
+
+.mob-skeleton-horse-face {
+    background-position: -32px -1536px;
+}
+
+.mob-slime-face {
+    background-position: -64px -1536px;
+}
+
+.mob-sniffer-face {
+    background-position: -96px -1536px;
+}
+
+.mob-snow-golem-face {
+    background-position: -128px -1536px;
+}
+
+.mob-spider-face {
+    background-position: -160px -1536px;
+}
+
+.mob-squid-face {
+    background-position: -192px -1536px;
+}
+
+.mob-stray-face {
+    background-position: -224px -1536px;
+}
+
+.mob-strider-face {
+    background-position: -256px -1536px;
+}
+
+.mob-tadpole-face {
+    background-position: -288px -1536px;
+}
+
+.mob-trader-llama-face {
+    background-position: -320px -1536px;
+}
+
+.mob-tropical-fish-face {
+    background-position: -352px -1536px;
+}
+
+.mob-turtle-face {
+    background-position: -384px -1536px;
+}
+
+.mob-vex-face {
+    background-position: -416px -1536px;
+}
+
+.mob-villager-face {
+    background-position: -448px -1536px;
+}
+
+.mob-vindicator-face {
+    background-position: -480px -1536px;
+}
+
+.mob-wandering-trader-face {
+    background-position: -512px -1536px;
+}
+
+.mob-warden-face {
+    background-position: -544px -1536px;
+}
+
+.mob-witch-face {
+    background-position: -576px -1536px;
+}
+
+.mob-wither-face {
+    background-position: -608px -1536px;
+}
+
+.mob-wither-skeleton-face {
+    background-position: -640px -1536px;
+}
+
+.mob-wolf-face {
+    background-position: -672px -1536px;
+}
+
+.mob-zoglin-face {
+    background-position: -704px -1536px;
+}
+
+.mob-zombie-face {
+    background-position: -736px -1536px;
+}
+
+.mob-zombie-horse-face {
+    background-position: -768px -1536px;
+}
+
+.mob-zombie-villager-face {
+    background-position: -800px -1536px;
+}
+
+.mob-zombified-piglin-face {
+    background-position: -832px -1536px;
+}

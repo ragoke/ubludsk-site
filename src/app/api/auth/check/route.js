@@ -35,6 +35,7 @@ const refreshTokenAndGetNewData = async (refresh_token) => {
 		}
 		const [newData, error] = await getUserData(response.data.access_token);
 		if (error) {
+			console.log(`error 403: `, error);
 			return [null, 403];
 		}
 		return [[newData, response.data.refresh_token], null];
@@ -83,7 +84,7 @@ export async function GET(request) {
 		});
 	} else {
 		const [data] = await getUserData(access_token);
-		if (!data) {
+		if (!data[0]) {
 			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
 			if (error === 401) {
 				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
@@ -93,7 +94,6 @@ export async function GET(request) {
 			if (JSON.stringify(data[0].roles) !== JSON.stringify(candidate.roles)) {
 				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data[0].roles });
 			}
-			console.log('2');
 			return NextResponse.json({
 				nick: result[0].nick,
 				avatar: result[0].avatar,

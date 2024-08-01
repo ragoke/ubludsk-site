@@ -77,7 +77,7 @@ const MainPage = () => {
                     }
                     if (result.roles.includes(discordVillageRoleId) === true) {
                         setIsLogined(true);
-                        setIsAdmin(result.admin);
+                        // setIsAdmin(result.admin);
                         setUserGuildNick(result.nick);
                         localStorage.setItem('secret', result.access_token);
                         const [getAllPoints_result, getAllPoints_error] = await getAllPoints();

@@ -96,7 +96,7 @@ export async function GET(request) {
 			return NextResponse.json({
 				nick: result[0].nick,
 				avatar: result[0].avatar,
-				roles: data.roles,
+				roles: result[0].roles,
 				access_token: result[0][1].access_token
 			});
 		}

@@ -50,9 +50,10 @@ export async function GET(request) {
 	}
 
 	const [data] = await getUserData(access_token);
+	console.log(data);
+	redirectUrl.searchParams.append('error', 'Тебя нет в дискорде Ублюдска');
+	return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	if (!data) {
-		redirectUrl.searchParams.append('error', 'Тебя нет в дискорде Ублюдска');
-		return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	}
 	await connectMongoDB();
 	const candidate = await Player.findOne({ access_token });

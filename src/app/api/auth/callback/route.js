@@ -62,7 +62,7 @@ export async function GET(request) {
 			nick: data.nick || data.user.global_name,
 			avatar: data.avatar || data.user.avatar,
 			roles: data.roles,
-			access_token: access_token,
+			access_token: getTokenData.access_token,
 		});
 	}
 	if (JSON.stringify(data.roles) !== JSON.stringify(candidate.roles)) {
@@ -72,7 +72,7 @@ export async function GET(request) {
 	redirectUrl.searchParams.append('nick', data.nick || data.user.global_name);
 	redirectUrl.searchParams.append('avatar', data.avatar || data.user.avatar);
 	redirectUrl.searchParams.append('roles', JSON.stringify(data.roles));
-	redirectUrl.searchParams.append('access_token', access_token);
+	redirectUrl.searchParams.append('access_token', getTokenData.access_token);
 	const next_response = NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	next_response.cookies.set('refresh_token', getTokenData.refresh_token, { httpOnly: true });
 	return next_response;

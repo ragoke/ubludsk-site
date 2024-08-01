@@ -21,12 +21,14 @@ const MainPage = () => {
     const error_param = searchParams.get('error');
     const nick_param = searchParams.get('nick');
     const avatar_param = searchParams.get('avatar');
-    const admin_param = searchParams.get('admin');
+    const roles_param = JSON.parse(searchParams.get('roles'));
     const access_token = searchParams.get('access_token');
 
     const [isLogined, setIsLogined] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [userGuildNick, setUserGuildNick] = useState(null);
+
+    const discordVillageRoleId = '1211782261620346880';
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalState, setModalState] = useState(null);
@@ -39,44 +41,57 @@ const MainPage = () => {
     const [points, setPoints] = useState([]);
 
     useEffect(() => {
-        if (access_token || nick_param || admin_param || error_param) {
+        if (access_token || nick_param || roles_param || error_param) {
             router.replace('/');
         }
         (async () => {
-            const [result, error] = await getAllPoints();
-            if (error) return;
-            setPoints(result);
             if (isLogined === null) {
                 if (error_param) {
                     setModalError(error_param);
                     return;
                 }
                 if (access_token) {
-                    if (access_token.length === 30 && nick_param && admin_param) {
+                    if (access_token.length === 30 && nick_param && roles_param) {
                         localStorage.setItem('secret', access_token);
-                        setIsLogined(true);
-                        setIsAdmin(admin_param);
-                        setUserGuildNick(nick_param);
+                        if (roles_param.includes(discordVillageRoleId) === true) {
+                            setIsLogined(true);
+                            setUserGuildNick(nick_param);
+                            const [result, error] = await getAllPoints();
+                            if (error) return;
+                            setPoints(result);
+                        } else {
+                            setIsLogined(false);
+                            setModalError('Ты не житель Ублюдска');
+                        }
+                        // setIsAdmin(roles_param);
                     }
                 }
                 const secret = localStorage.getItem('secret');
                 if (secret) {
                     const [result, error] = await checkUser(secret);
                     if (error) {
+                        setIsLogined(false);
                         setModalError(error);
                         localStorage.removeItem('secret');
                         return;
                     }
-                    setIsLogined(true);
-                    setIsAdmin(result.admin);
-                    setUserGuildNick(result.nick);
-                    localStorage.setItem('secret', result.access_token);
+                    if (roles_param.includes(discordVillageRoleId) === true) {
+                        setIsLogined(true);
+                        setIsAdmin(result.admin);
+                        setUserGuildNick(result.nick);
+                        localStorage.setItem('secret', result.access_token);
+                        const [getAllPoints_result, getAllPoints_error] = await getAllPoints();
+                        if (getAllPoints_error) return;
+                        setPoints(getAllPoints_result);
+                    } else {
+                        setIsLogined(false);
+                        setModalError('Ты не житель Ублюдска');
+                    }
                     return;
                 }
-                setIsLogined(false);
             }
         })();
-    }, [isLogined, router, error_param, nick_param, avatar_param, admin_param, access_token]);
+    }, [isLogined, router, error_param, nick_param, avatar_param, roles_param, access_token]);
 
     const isEmptyString = (str) => {
         return !str.trim();

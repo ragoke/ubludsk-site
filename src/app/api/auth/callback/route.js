@@ -60,13 +60,17 @@ export async function GET(request) {
 		await Player.create({
 			nick: data.nick || data.user.global_name,
 			avatar: data.avatar || data.user.avatar,
-			admin: (data.roles.includes('1211781664955437207') || data.roles.includes('1212633560947892234')),
+			roles: data.roles,
 			access_token: access_token,
 		});
 	}
+	if (JSON.stringify(data.roles) !== JSON.stringify(candidate.roles)) {
+		await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data.roles });
+	}
+	// (data.roles.includes('1211781664955437207') || data.roles.includes('1212633560947892234'))
 	redirectUrl.searchParams.append('nick', data.nick || data.user.global_name);
 	redirectUrl.searchParams.append('avatar', data.avatar || data.user.avatar);
-	redirectUrl.searchParams.append('admin', (data.roles.includes('1211781664955437207') || data.roles.includes('1212633560947892234')));
+	redirectUrl.searchParams.append('roles', JSON.stringify(data.roles));
 	redirectUrl.searchParams.append('access_token', access_token);
 	const next_response = NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	next_response.cookies.set('refresh_token', refresh_token, { httpOnly: true });

@@ -44,7 +44,7 @@ export async function GET(request) {
 	const code = searchParams.get('code');
 
 	const [getTokenData, getToken_error] = await getToken(code);
-	if (getTokenData.error || getToken_error) {
+	if (!getTokenData || getTokenData.error || getToken_error) {
 		console.log(getToken_error);
 		return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	}

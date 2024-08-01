@@ -46,6 +46,7 @@ const MainPage = () => {
         }
         (async () => {
             if (isLogined === null) {
+                setIsLogined(false);
                 if (error_param) {
                     setModalError(error_param);
                     return;
@@ -60,7 +61,6 @@ const MainPage = () => {
                             if (error) return;
                             setPoints(result);
                         } else {
-                            setIsLogined(false);
                             setModalError('Ты не житель Ублюдска');
                         }
                         // setIsAdmin(roles_param);
@@ -70,7 +70,6 @@ const MainPage = () => {
                 if (secret) {
                     const [result, error] = await checkUser(secret);
                     if (error) {
-                        setIsLogined(false);
                         setModalError(error);
                         localStorage.removeItem('secret');
                         return;
@@ -84,10 +83,8 @@ const MainPage = () => {
                         if (getAllPoints_error) return;
                         setPoints(getAllPoints_result);
                     } else {
-                        setIsLogined(false);
                         setModalError('Ты не житель Ублюдска');
                     }
-                    return;
                 }
             }
         })();

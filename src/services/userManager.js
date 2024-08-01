@@ -5,6 +5,6 @@ export const checkUser = async (secret) => {
 		const response = await axios.get(`/api/auth/check?access_token=${secret}`);
 		return [response.data, null];
 	} catch (error) {
-		return [null, error.response.data];
+		return [null, error.response];
 	}
 };

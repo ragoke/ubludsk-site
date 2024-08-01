@@ -44,11 +44,10 @@ export async function GET(request) {
 	const code = searchParams.get('code');
 
 	const [getTokenData, getToken_error] = await getToken(code);
-	console.log(getTokenData);
-	if (getToken_error) {
+	if (getTokenData.error || getToken_error) {
 		console.log(getToken_error);
+		return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	}
-	return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 
 	const [data] = await getUserData(getTokenData.access_token);
 	console.log(data);

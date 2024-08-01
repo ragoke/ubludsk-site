@@ -1,14 +1,102 @@
 @import "@/colors";
 
-.items {
+.modalTitle {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.loginWrapper {
+    margin: 0 140px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+.title {
+    user-select: none;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.inputWrapper {
+    user-select: none;
+    display: flex;
+
+    input {
+        background: black;
+        border: none;
+        padding: 14px 24px;
+        border-radius: 18px;
+        color: white;
+        font-size: 18px;
+    }
+
+    .buttons {
+        margin-left: 20px;
+        .button {
+            padding: 14px 24px;
+            background: black;
+            border-radius: 18px;
+            color: $text-color;
+            font-weight: 500;
+            transition-property: background, color;
+            transition: 200ms;
+            cursor: pointer;
+
+            &:hover {
+                background: #c8c8c8;
+                color: black;
+            }
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    text-wrap: nowrap;
+    &[columns="true"] {
+        flex-direction: column;
+    }
+    &[items="center"] {
+        align-items: center;
+    }
+
+    button {
+        background: #000;
+        color: #fff;
+        padding: 16px 20px;
+        border-radius: 18px;
+        max-height: 56px;
+        user-select: none;
+        transition-property: background, color;
+        transition: 200ms;
+        cursor: pointer;
+        width: min-content;
+        line-height: normal;
+
+        &[disabled] {
+            opacity: 0.4;
+            background: #cbc9c9;
+            color: #000;
+            cursor: not-allowed;
+        }
+
+        &:hover {
+            background: #cbc9c9;
+            color: #000;
+        }
+    }
+}
+
+.points {
     margin: 0 140px;
     margin-bottom: 40px;
     background-color: rgba(215, 233, 245, 0.3);
-    border-radius: 8px;
+    // border-radius: 8px;
     overflow: hidden;
 }
 
-.item {
+.point {
     display: flex;
     padding: 20px 40px;
     user-select: none;
@@ -25,69 +113,88 @@
         }
     }
 
-    &:not(:first-child) {
-        border-top: 4px solid $hovered;
+    &:not(:last-child) {
+        border-top: 1px solid $hovered;
+        border-bottom: 1px solid $hovered;
+    }
+    &:first-child {
+        border-top: 0;
+        border-bottom: 1px solid $hovered;
+    }
+    &:last-child {
+        border-top: 1px solid $hovered;
     }
 
     transition-property: background-color;
     transition-duration: 200ms;
 }
 
-.itemButtons {
+.pointButtons {
     display: flex;
     gap: 20px;
 
-    .itemButton {
+    .pointButton {
         display: flex;
         align-items: center;
         padding: 0 20px;
-        font-weight: 900;
-        font-size: 16px;
-        border-radius: 20px;
+        font-weight: 600;
+        font-size: 18px;
+        border-radius: 10px;
         transition-property: background-color, scale;
         transition-duration: 200ms;
-        box-shadow: 0 0 10px 1px rgba(30, 30, 30, 0.4);
+        box-shadow: 0 0 10px 0.5px rgba(30, 30, 30, 0.2);
 
-        @media (hover: hover) and (pointer: fine) {
+        &.add {
+            background: rgba(25, 140, 25, 1);
             &:hover {
                 scale: 0.95;
             }
         }
-        @media (hover: none) and (pointer: coarse) {
-            &:active {
-                scale: 0.95;
-            }
-        }
-
-        &.add {
-            background: rgba(25, 140, 25, 0.9);
-        }
         &.take {
-            background: rgba(204, 0, 0, 0.9);
+            opacity: 0.4;
+            background: rgba(204, 0, 0, 1);
+            cursor: not-allowed;
+
+            &.active {
+                opacity: 1;
+                cursor: pointer;
+                &:hover {
+                    scale: 0.95;
+                }
+            }
         }
     }
 }
 
-.itemInfo {
+.pointInfo {
     display: flex;
     font-size: 2em;
-    gap: 60px;
+    gap: 70px;
     font-weight: 600;
 }
 
-.itemIcon {
+.pointIcon {
     display: flex;
     position: relative;
     width: 32px;
     height: 32px;
 }
-.itemValue {
+.pointValue {
     z-index: 2;
     position: absolute;
-    bottom: -30px;
-    right: -12px;
+    bottom: -32px;
+    left: 26px;
     font-weight: 700;
     text-shadow: 2px 2px 2px $bg-color;
+}
+
+.adminAccess {
+    margin: 0 140px;
+    margin-bottom: 40px;
+    background-color: rgba(215, 233, 245, 0.3);
+    overflow: hidden;
+    user-select: none;
+    padding: 20px 40px;
 }
 
 .iconMinecraft {

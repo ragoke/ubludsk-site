@@ -1,7 +1,8 @@
 import './globals.scss';
 import { NextUIProvider } from "@nextui-org/react";
-import { Golos_Text } from 'next/font/google';
 import { Suspense } from 'react';
+import { Golos_Text } from 'next/font/google';
+import { SessionProvider } from 'next-auth/react';
 
 const golos = Golos_Text({
     subsets: ['cyrillic', 'latin'],
@@ -17,7 +18,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
     return (
         <html lang="ru">
-            <body /* className={golos.className} */>
+            <body className={golos.className}>
                 <NextUIProvider className={'min-h-full flex flex-col'}>
                     <Suspense>
                         {children}

@@ -1,9 +1,9 @@
 {
     "name": "client",
-    "version": "0.3.0",
+    "version": "1.0",
     "private": true,
     "scripts": {
-        "dev": "cross-env NEXT_PUBLIC_REDIRECT_URL=http://81.24.210.35 next dev",
+        "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "export": "next export",
@@ -12,10 +12,13 @@
     "dependencies": {
         "@nextui-org/react": "^2.4.2",
         "@phosphor-icons/react": "^2.1.7",
+        "@react-icons/all-files": "^4.1.0",
         "@splidejs/react-splide": "^0.7.12",
         "axios": "^1.7.2",
         "http-proxy-middleware": "^3.0.0",
+        "mongoose": "^8.5.2",
         "next": "14.2.4",
+        "next-auth": "^4.24.7",
         "react": "^18",
         "react-dom": "^18",
         "sass": "^1.77.6",

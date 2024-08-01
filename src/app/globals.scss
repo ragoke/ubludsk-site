@@ -21,10 +21,6 @@
     background: #d9d9d9;
 }
 
-// html {
-//     scrollbar-gutter: stable;
-// }
-
 body {
     font-size: 16px;
     font-weight: 400;
@@ -42,7 +38,7 @@ body {
     color: $text-color;
 
     h1 {
-        margin: 40px 140px;
+        // margin: 40px 140px;
         user-select: none;
         font-size: 2em;
         font-weight: bold;

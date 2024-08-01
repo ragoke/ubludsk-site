@@ -43,20 +43,21 @@ export async function GET(request) {
 	const searchParams = request.nextUrl.searchParams;
 	const code = searchParams.get('code');
 
-	const [{ access_token, refresh_token }, getToken_error] = await getToken(code);
+	const [getTokenData, getToken_error] = await getToken(code);
+	console.log(getTokenData);
 	if (getToken_error) {
 		console.log(getToken_error);
+	}
+	return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
+
+	const [data] = await getUserData(getTokenData.access_token);
+	console.log(data);
+	if (!data) {
+		redirectUrl.searchParams.append('error', 'Тебя нет в дискорде Ублюдска');
 		return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
 	}
-
-	const [data] = await getUserData(access_token);
-	console.log(data);
-	redirectUrl.searchParams.append('error', 'Тебя нет в дискорде Ублюдска');
-	return NextResponse.redirect(redirectUrl.toString(), { status: 302 });
-	if (!data) {
-	}
 	await connectMongoDB();
-	const candidate = await Player.findOne({ access_token });
+	const candidate = await Player.findOne({ access_token: getTokenData.access_token });
 	if (!candidate) {
 		await Player.create({
 			nick: data.nick || data.user.global_name,
@@ -74,6 +75,6 @@ export async function GET(request) {
 	redirectUrl.searchParams.append('roles', JSON.stringify(data.roles));
 	redirectUrl.searchParams.append('access_token', access_token);
 	const next_response = NextResponse.redirect(redirectUrl.toString(), { status: 302 });
-	next_response.cookies.set('refresh_token', refresh_token, { httpOnly: true });
+	next_response.cookies.set('refresh_token', getTokenData.refresh_token, { httpOnly: true });
 	return next_response;
 }

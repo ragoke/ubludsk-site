@@ -76,7 +76,7 @@ const MainPage = () => {
                 setIsLogined(false);
             }
         })();
-    }, [error_param, nick_param, avatar_param, admin_param, access_token]);
+    }, [isLogined, router, error_param, nick_param, avatar_param, admin_param, access_token]);
 
     const isEmptyString = (str) => {
         return !str.trim();

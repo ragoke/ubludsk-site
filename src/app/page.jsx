@@ -69,6 +69,7 @@ const MainPage = () => {
                 const secret = localStorage.getItem('secret');
                 if (secret) {
                     const [result, error] = await checkUser(secret);
+                    console.log(result);
                     if (error) {
                         setModalError(error);
                         localStorage.removeItem('secret');

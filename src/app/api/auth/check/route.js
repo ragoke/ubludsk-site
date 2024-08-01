@@ -11,7 +11,7 @@ const getUserData = async (access_token) => {
 				'Authorization': `Bearer ${access_token}`,
 			},
 		});
-		return [response.data, null];
+		return [[response.data, access_token], null];
 	} catch (error) {
 		return [null, error.response];
 	}
@@ -37,7 +37,7 @@ const refreshTokenAndGetNewData = async (refresh_token) => {
 		if (error) {
 			return [null, 403];
 		}
-		return [[newData, response.data.access_token, response.data.refresh_token], null];
+		return [[newData, response.data.refresh_token], null];
 	} catch (error) {
 		return [null, error.response.data];
 	}
@@ -47,19 +47,13 @@ export async function GET(request) {
 	const cookieStore = cookies();
 
 	const searchParams = request.nextUrl.searchParams;
-	const access_token = searchParams.get('access_token') || '';
+	const access_token = searchParams.get('access_token');
 	if (!access_token) {
 		return NextResponse.json({ error: "No token provided" }, { status: 401 });
 	}
 	await connectMongoDB();
 	const candidate = await Player.findOne({ access_token });
 	if (!candidate) {
-		await Player.create({
-			nick: data.nick || data.user.global_name,
-			avatar: data.avatar || data.user.avatar,
-			roles: data.roles,
-			access_token: access_token,
-		});
 		const [data] = await getUserData(access_token);
 		if (!data) {
 			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
@@ -68,13 +62,25 @@ export async function GET(request) {
 			} else if (error === 403) {
 				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
 			}
+			await Player.create({
+				nick: result[0].nick || result[0].user.global_name,
+				avatar: result[0].avatar || result[0].user.avatar,
+				roles: result[0].roles,
+				access_token: result[0][0][1]
+			});
 			return NextResponse.json({
 				nick: result[0].nick || result[0].user.global_name,
 				avatar: result[0].avatar || result[0].user.avatar,
 				roles: result[0].roles,
-				access_token: result[0][1].access_token
+				access_token: result[0][0][1]
 			}).cookies.set('refresh_token', result[0][2].refresh_token);
 		}
+		return NextResponse.json({
+			nick: data[0].nick || data[0].user.global_name,
+			avatar: data[0].avatar || data[0].user.avatar,
+			roles: data[0].roles,
+			access_token: data[1].access_token
+		});
 	} else {
 		const [data] = await getUserData(access_token);
 		if (!data) {

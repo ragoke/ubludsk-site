@@ -75,7 +75,7 @@ const MainPage = () => {
                         localStorage.removeItem('secret');
                         return;
                     }
-                    if (roles_param.includes(discordVillageRoleId) === true) {
+                    if (result.roles.includes(discordVillageRoleId) === true) {
                         setIsLogined(true);
                         setIsAdmin(result.admin);
                         setUserGuildNick(result.nick);

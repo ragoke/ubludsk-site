@@ -31,11 +31,11 @@ const refreshTokenAndGetNewData = async (refresh_token) => {
 			}
 		});
 		if (!response.data) {
-			return [401, null];
+			return [null, 401];
 		}
 		const [newData, error] = await getUserData(response.data.access_token);
 		if (error) {
-			return [403, null];
+			return [null, 403];
 		}
 		return [[newData, response.data.access_token, response.data.refresh_token], null];
 	} catch (error) {
@@ -62,13 +62,10 @@ export async function GET(request) {
 		});
 		const [data] = await getUserData(access_token);
 		if (!data) {
-			const [result] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
-			if (!result) {
+			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
+			if (error === 401) {
 				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
-			}
-			if (result === 401) {
-				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
-			} else if (result === 403) {
+			} else if (error === 403) {
 				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
 			}
 			return NextResponse.json({
@@ -81,7 +78,12 @@ export async function GET(request) {
 	} else {
 		const [data] = await getUserData(access_token);
 		if (!data) {
-			const [result] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '')
+			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
+			if (error === 401) {
+				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
+			} else if (error === 403) {
+				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
+			}
 			if (JSON.stringify(data.roles) !== JSON.stringify(candidate.roles)) {
 				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data.roles });
 			}

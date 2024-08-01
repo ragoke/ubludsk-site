@@ -1,11 +1,14 @@
 import connectMongoDB from "@/libs/mongodb";
 import Point from "@/models/point";
 import { NextResponse } from "next/server";
+export const maxDuration = 60;
 
 export async function GET() {
 	await connectMongoDB();
-	const points = await Point.find() || [];
-	return NextResponse.json(points);
+	const points = await Point.find();
+	return new Response(points, {
+		status: 200
+	});
 }
 
 export async function PATCH(req) {

@@ -75,6 +75,7 @@ export async function GET(request) {
 				access_token: result[0][0][1]
 			}).cookies.set('refresh_token', result[0][2].refresh_token);
 		}
+		console.log('3');
 		return NextResponse.json({
 			nick: data[0].nick || data[0].user.global_name,
 			avatar: data[0].avatar || data[0].user.avatar,
@@ -93,6 +94,7 @@ export async function GET(request) {
 			if (JSON.stringify(data.roles) !== JSON.stringify(candidate.roles)) {
 				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data.roles });
 			}
+			console.log('2');
 			return NextResponse.json({
 				nick: result[0].nick,
 				avatar: result[0].avatar,
@@ -100,6 +102,7 @@ export async function GET(request) {
 				access_token: result[0][1].access_token
 			});
 		}
+		console.log('1');
 		return NextResponse.json({
 			nick: candidate.nick,
 			avatar: candidate.avatar,

@@ -75,7 +75,6 @@ export async function GET(request) {
 				access_token: result[0][0][1]
 			}).cookies.set('refresh_token', result[0][2].refresh_token);
 		}
-		console.log('3');
 		return NextResponse.json({
 			nick: data[0].nick || data[0].user.global_name,
 			avatar: data[0].avatar || data[0].user.avatar,
@@ -84,6 +83,8 @@ export async function GET(request) {
 		});
 	} else {
 		const [data] = await getUserData(access_token);
+		console.log('data -->');
+		console.log(data);
 		if (!data) {
 			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
 			if (error === 401) {
@@ -102,7 +103,6 @@ export async function GET(request) {
 				access_token: result[0][1].access_token
 			});
 		}
-		console.log('1');
 		return NextResponse.json({
 			nick: candidate.nick,
 			avatar: candidate.avatar,

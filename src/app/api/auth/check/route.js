@@ -83,8 +83,6 @@ export async function GET(request) {
 		});
 	} else {
 		const [data] = await getUserData(access_token);
-		console.log('data -->');
-		console.log(data);
 		if (!data) {
 			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
 			if (error === 401) {
@@ -92,8 +90,8 @@ export async function GET(request) {
 			} else if (error === 403) {
 				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
 			}
-			if (JSON.stringify(data.roles) !== JSON.stringify(candidate.roles)) {
-				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data.roles });
+			if (JSON.stringify(data[0].roles) !== JSON.stringify(candidate.roles)) {
+				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data[0].roles });
 			}
 			console.log('2');
 			return NextResponse.json({
@@ -106,8 +104,8 @@ export async function GET(request) {
 		return NextResponse.json({
 			nick: candidate.nick,
 			avatar: candidate.avatar,
-			roles: data.roles,
-			access_token: access_token
+			roles: data[0].roles,
+			access_token: data[1]
 		});
 	}
 }

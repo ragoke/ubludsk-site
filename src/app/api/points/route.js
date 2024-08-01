@@ -6,9 +6,7 @@ export const maxDuration = 60;
 export async function GET() {
 	await connectMongoDB();
 	const points = await Point.find();
-	return new Response(points, {
-		status: 200
-	});
+	return NextResponse.json(points);
 }
 
 export async function PATCH(req) {

@@ -67,12 +67,12 @@
         padding: 16px 20px;
         border-radius: 18px;
         max-height: 56px;
+        line-height: normal;
         user-select: none;
         transition-property: background, color;
         transition: 200ms;
         cursor: pointer;
         width: min-content;
-        line-height: normal;
 
         &[disabled] {
             opacity: 0.4;
@@ -88,12 +88,52 @@
     }
 }
 
-.points {
+.panel {
     margin: 0 140px;
     margin-bottom: 40px;
     background-color: rgba(215, 233, 245, 0.3);
-    // border-radius: 8px;
     overflow: hidden;
+    user-select: none;
+
+    .panelButtons {
+        display: flex;
+        gap: 20px;
+
+        .panelButton {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: 10px;
+            transition-property: background-color, scale;
+            transition-duration: 200ms;
+            box-shadow: 0 0 10px 0.5px rgba(30, 30, 30, 0.2);
+            height: 50px;
+            line-height: normal;
+            color: white;
+
+            &.add {
+                background: rgba(25, 140, 25, 1);
+                &:hover {
+                    scale: 0.95;
+                }
+            }
+            &.take {
+                opacity: 0.4;
+                background: rgba(204, 0, 0, 1);
+                cursor: not-allowed;
+
+                &.active {
+                    opacity: 1;
+                    cursor: pointer;
+                    &:hover {
+                        scale: 0.95;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .point {
@@ -101,6 +141,9 @@
     padding: 20px 40px;
     user-select: none;
     justify-content: space-between;
+    align-items: center;
+    transition-property: background-color;
+    transition-duration: 200ms;
 
     @media (hover: hover) and (pointer: fine) {
         &:hover {
@@ -124,53 +167,6 @@
     &:last-child {
         border-top: 1px solid $hovered;
     }
-
-    transition-property: background-color;
-    transition-duration: 200ms;
-}
-
-.pointButtons {
-    display: flex;
-    gap: 20px;
-
-    .pointButton {
-        display: flex;
-        align-items: center;
-        padding: 0 20px;
-        font-weight: 600;
-        font-size: 18px;
-        border-radius: 10px;
-        transition-property: background-color, scale;
-        transition-duration: 200ms;
-        box-shadow: 0 0 10px 0.5px rgba(30, 30, 30, 0.2);
-
-        &.add {
-            background: rgba(25, 140, 25, 1);
-            &:hover {
-                scale: 0.95;
-            }
-        }
-        &.take {
-            opacity: 0.4;
-            background: rgba(204, 0, 0, 1);
-            cursor: not-allowed;
-
-            &.active {
-                opacity: 1;
-                cursor: pointer;
-                &:hover {
-                    scale: 0.95;
-                }
-            }
-        }
-    }
-}
-
-.pointInfo {
-    display: flex;
-    font-size: 2em;
-    gap: 70px;
-    font-weight: 600;
 }
 
 .pointIcon {
@@ -178,40 +174,41 @@
     position: relative;
     width: 32px;
     height: 32px;
-}
-.pointValue {
-    z-index: 2;
-    position: absolute;
-    bottom: -32px;
-    left: 26px;
-    font-weight: 700;
-    text-shadow: 2px 2px 2px $bg-color;
+
+    .iconMinecraft {
+        display: inline-block;
+        vertical-align: middle;
+        background-image: url("/icons-minecraft.png");
+        background-repeat: no-repeat;
+
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: pixelated;
+        width: 32px;
+        height: 32px;
+        scale: 2;
+        margin-top: 5px;
+        opacity: 0.9;
+    }
+
+    .pointValue {
+        position: absolute;
+        z-index: 2;
+        bottom: -32px;
+        font-size: 1.8em;
+        left: 26px;
+        font-weight: 700;
+        text-shadow: 2px 2px 2px $bg-color;
+    }
 }
 
-.adminAccess {
-    margin: 0 140px;
-    margin-bottom: 40px;
-    background-color: rgba(215, 233, 245, 0.3);
-    overflow: hidden;
-    user-select: none;
-    padding: 20px 40px;
-}
-
-.iconMinecraft {
-    display: inline-block;
-    vertical-align: middle;
-    background-image: url("https://www.gamergeeks.net/apps/minecraft/web-developer-tools/css-blocks-and-entities/icons-minecraft-185.png");
-    background-repeat: no-repeat;
-    background-position: 32px 32px;
-
-    -ms-interpolation-mode: nearest-neighbor;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: pixelated;
-    width: 32px;
-    height: 32px;
-    scale: 2;
-    margin-top: 5px;
-    opacity: 0.9;
+.pointInfo {
+    // display: flex;
+    gap: 70px;
+    font-weight: 600;
+    .pointName {
+        font-size: 1.8em;
+    }
 }
 
 .acacia-boat {

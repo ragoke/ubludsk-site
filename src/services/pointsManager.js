@@ -8,10 +8,10 @@ export const getAllPoints = async () => {
 		return [null, error];
 	}
 };
-export const udpatePoint = async ({ sprite, value }) => {
+export const udpatePoint = async ({ sprite, prevValue, value, updatedAt }) => {
 	try {
 		const response = await axios.post('/api/points',
-			{ sprite, value }
+			{ sprite, prevValue, value, updatedAt }
 		);
 		return [response.data, null];
 	} catch (error) {

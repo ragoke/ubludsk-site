@@ -16,8 +16,8 @@ export async function PATCH(req) {
 }
 
 export async function POST(req) {
-	const { player, sprite, value } = await req.json();
+	const { players, sprite, prevValue, value, updatedAt } = await req.json();
 	await connectMongoDB();
-	await Point.findOneAndUpdate({ sprite }, { value: parseInt(value) });
+	await Point.findOneAndUpdate({ sprite }, { prevValue, value, updatedAt });
 	return NextResponse.json({});
 }

@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Modal, ModalContent } from "@nextui-org/react";
 import { getAllPoints, udpatePoint } from '@/services/pointsManager';
-import { checkUser } from '@/services/userManager';
+import { checkUser, logoutUser } from '@/services/userManager';
 import { Golos_Text } from 'next/font/google';
 
 const golos = Golos_Text({
@@ -18,17 +18,18 @@ const updateItem = (array, index, newItem) =>
 const MainPage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const error_param = searchParams.get('error');
-    const nick_param = searchParams.get('nick');
-    const avatar_param = searchParams.get('avatar');
-    const roles_param = JSON.parse(searchParams.get('roles'));
-    const access_token = searchParams.get('access_token');
+    const errorParam = searchParams.get('error');
+    const nickParam = searchParams.get('nick');
+    const avatarParam = searchParams.get('avatar');
+    const rolesParam = JSON.parse(searchParams.get('roles'));
+    const accessToken = searchParams.get('accessToken');
 
     const [isLogined, setIsLogined] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [userGuildNick, setUserGuildNick] = useState(null);
 
     const discordVillageRoleId = '1211782261620346880';
+    const discordAdminsIds = ['1211781664955437207', '1212633431251484692', '1212633560947892234'];
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalState, setModalState] = useState(null);
@@ -41,55 +42,58 @@ const MainPage = () => {
     const [points, setPoints] = useState([]);
 
     useEffect(() => {
-        if (access_token || nick_param || roles_param || error_param) {
+        if (accessToken || nickParam || rolesParam || errorParam) {
             router.replace('/');
         }
         (async () => {
             if (isLogined === null) {
-                setIsLogined(false);
-                if (error_param) {
-                    setModalError(error_param);
+                if (errorParam) {
+                    setIsLogined(false);
+                    setModalError(errorParam);
                     return;
                 }
-                if (access_token) {
-                    if (access_token.length === 30 && nick_param && roles_param) {
-                        localStorage.setItem('secret', access_token);
-                        if (roles_param.includes(discordVillageRoleId) === true) {
+                if (accessToken) {
+                    const { token } = JSON.parse(accessToken);
+                    if (token.length === 30 && nickParam && rolesParam) {
+                        localStorage.setItem('secret', accessToken);
+                        if (rolesParam.includes(discordVillageRoleId) === true) {
                             setIsLogined(true);
-                            setUserGuildNick(nick_param);
+                            setUserGuildNick(nickParam);
+                            setIsAdmin(rolesParam.some(item => discordAdminsIds.includes(item)));
                             const [result, error] = await getAllPoints();
                             if (error) return;
                             setPoints(result);
                         } else {
+                            setIsLogined(false);
                             setModalError('Ты не житель Ублюдска');
                         }
-                        // setIsAdmin(roles_param);
                     }
+                    return;
                 }
                 const secret = localStorage.getItem('secret');
                 if (secret) {
-                    const [result, error] = await checkUser(secret);
-                    console.log(result);
+                    const [result, error] = await checkUser(JSON.parse(secret).token, JSON.parse(secret).userId);
                     if (error) {
-                        setModalError(error);
-                        localStorage.removeItem('secret');
+                        setModalError(error.error);
                         return;
                     }
                     if (result.roles.includes(discordVillageRoleId) === true) {
                         setIsLogined(true);
-                        // setIsAdmin(result.admin);
                         setUserGuildNick(result.nick);
-                        localStorage.setItem('secret', result.access_token);
+                        setIsAdmin(result.roles.some(item => discordAdminsIds.includes(item)));
                         const [getAllPoints_result, getAllPoints_error] = await getAllPoints();
                         if (getAllPoints_error) return;
                         setPoints(getAllPoints_result);
                     } else {
+                        setIsLogined(false);
                         setModalError('Ты не житель Ублюдска');
                     }
+                    return;
                 }
+                setIsLogined(false);
             }
         })();
-    }, [isLogined, router, error_param, nick_param, avatar_param, roles_param, access_token]);
+    }, [isLogined, router, errorParam, nickParam, avatarParam, rolesParam, accessToken]);
 
     const isEmptyString = (str) => {
         return !str.trim();
@@ -127,9 +131,12 @@ const MainPage = () => {
     const addPointValue = async (value) => {
         const newValue = points[pointId.current].value + parseInt(value);
         if (newValue < 0) return;
-        const [, error] = await udpatePoint({ player: userGuildNick, sprite: points[pointId.current].sprite, value: newValue });
+        const timezoneOffset = 0 * 60;
+        const newDate = new Date(new Date().getTime() + timezoneOffset * 60 * 1000);
+        const [, error] = await udpatePoint({ player: userGuildNick, sprite: points[pointId.current].sprite, prevValue: points[pointId.current].value, value: newValue, updatedAt: newDate });
         if (error) return;
-        setPoints(p => updateItem(p, pointId.current, { ...p[pointId.current], value: newValue }));
+        const [newPoints] = await getAllPoints();
+        setPoints(newPoints);
         closeModal();
     };
     const takePointValue = async (value) => {
@@ -138,9 +145,12 @@ const MainPage = () => {
             setModalError(`Не дохера ли ты хочешь? На складе: ${points[pointId.current].value}`);
             return;
         }
-        const [, error] = await udpatePoint({ player: userGuildNick, sprite: points[pointId.current].sprite, value: newValue });
+        const timezoneOffset = 0 * 60;
+        const newDate = new Date(new Date().getTime() + timezoneOffset * 60 * 1000);
+        const [, error] = await udpatePoint({ player: userGuildNick, sprite: points[pointId.current].sprite, prevValue: points[pointId.current].value, value: newValue, updatedAt: newDate });
         if (error) return;
-        setPoints(p => updateItem(p, pointId.current, { ...p[pointId.current], value: newValue }));
+        const [newPoints] = await getAllPoints();
+        setPoints(newPoints);
         closeModal();
     };
 
@@ -235,51 +245,64 @@ const MainPage = () => {
                 <h1>Ублюдский склад</h1>
                 {isLogined === true && <div className="buttons" items="center">
                     <p className="text-2xl">{userGuildNick && `${userGuildNick}`}</p>
-                    <button onClick={() => {
-                        setIsLogined(false);
-                        setIsAdmin(false);
-                        setUserGuildNick(null);
-                        localStorage.removeItem('secret');
+                    <button onClick={async () => {
+                        const secret = localStorage.getItem('secret');
+                        if (secret) {
+                            await logoutUser(JSON.parse(secret).token);
+                            setIsLogined(false);
+                            setIsAdmin(false);
+                            setUserGuildNick(null);
+                            localStorage.removeItem('secret');
+                        }
                     }}>Выйти</button>
                 </div>}
             </div>
             {isLogined === true ? <>
-                <ul className="points">
-                    {points.sort((a, b) => a.name.localeCompare(b.name)).map((point, id) => (
+                <ul className="panel">
+                    {points && points.sort((a, b) => a.name.localeCompare(b.name)).map((point, id) => (
                         <div key={id} className="point">
-                            <div className="pointInfo">
+                            <div className="flex gap-[70px]">
                                 <div className="pointIcon">
                                     <i className={`iconMinecraft ${point.sprite}`}></i>
                                     <div className="pointValue">{point.value}</div>
                                 </div>
-                                <div className="pointName">{point.name}</div>
+                                <div className="pointInfo">
+                                    <div className="pointName">{point.name}</div>
+                                    <div>
+                                        {(point.updatedAt && point.prevValue >= 0) && (<>
+                                            {point.prevValue > point.value ?
+                                                `Забрал ${point.prevValue - point.value} (${new Date(point.updatedAt).toLocaleDateString()} в ${new Date(point.updatedAt).toLocaleTimeString()})`
+                                                : `Положил ${point.value} (${new Date(point.updatedAt).toLocaleDateString()} в ${new Date(point.updatedAt).toLocaleTimeString()})`}
+                                        </>)}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="pointButtons">
+                            <div className="panelButtons">
                                 <button
-                                    className="pointButton add"
+                                    className="panelButton add"
                                     onClick={() => openAddModal(id)}
                                 >Добавить</button>
                                 <button
-                                    className={`pointButton take ${point.value < 1 ? '' : 'active'}`}
+                                    className={`panelButton take ${point.value < 1 ? '' : 'active'}`}
                                     onClick={() => openTakeModal(point.value, id)}
                                 >Забрать</button>
                             </div>
                         </div>
                     ))}
                 </ul>
-                {/* <div className="adminAccess">
+                <div className="panel py-[20px] px-[40px]">
                     <p className="title">Админ панель</p>
-                    <div className="pointButtons">
+                    <div className="panelButtons">
                         <button
-                            className="pointButton add"
+                            className="panelButton add"
                             onClick={() => { }}
                         >Добавить</button>
                         <button
-                            className={`pointButton take active`}
+                            className="panelButton take active"
                             onClick={() => { }}
                         >Убрать</button>
                     </div>
-                </div> */}
+                </div>
             </> : isLogined === false ? <div className="loginWrapper">
                 <p className="title">Войди в аккаунт</p>
                 <br />
@@ -291,7 +314,12 @@ const MainPage = () => {
                         {modalError}
                     </p>
                 </div>
-            </div> : <div className="loginWrapper"><p className="title">пажжи чут чут🤏</p></div>}
+            </div> : <div className="loginWrapper">
+                <p className="title">пажжи чут чут🤏</p>
+                <p className='text-[20px] text-red-500 mt-[10px]'>
+                    {modalError}
+                </p>
+            </div>}
         </div>
     </>);
 };

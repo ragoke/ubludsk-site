@@ -1,111 +1,109 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import connectMongoDB from "@/libs/mongodb";
-import Player from "@/models/player";
+import connectToDatabase from "@/libs/mongodb";
+import User from "@/models/user";
 
-const getUserData = async (access_token) => {
+const ubludskGuildId = '1211777494559096933';
+const CACHE_DURATION = 60 * 1000;
+
+const getUserGuildData = async (access_token) => {
+	const url = `https://discord.com/api/v10/users/@me/guilds/${ubludskGuildId}/member`;
 	try {
-		const response = await axios.get('https://discord.com/api/users/@me/guilds/1211777494559096933/member', {
+		const response = await axios.get(url, {
 			headers: {
 				'Authorization': `Bearer ${access_token}`,
 			},
 		});
-		return [[response.data, access_token], null];
+		return [response.data, null];
 	} catch (error) {
-		return [null, error.response];
+		return [null, { status: error.response.status, data: error.response.data }];
 	}
 };
 
-const refreshTokenAndGetNewData = async (refresh_token) => {
-	const data = {
-		client_id: process.env.DISCORD_CLIENT_ID,
-		client_secret: process.env.DISCORD_CLIENT_SECRET,
-		grant_type: 'refresh_token',
-		'refresh_token': refresh_token
-	};
+const getUserAvatar = async (userId, avatarHash) => {
+	const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png`;
 	try {
-		const response = await axios.post('https://discord.com/api/oauth2/token', data, {
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			}
-		});
-		if (!response.data) {
-			return [null, 401];
-		}
-		const [newData, error] = await getUserData(response.data.access_token);
-		if (error) {
-			console.log(`error 403: `, error);
-			return [null, 403];
-		}
-		return [[newData, response.data.refresh_token], null];
+		const response = await axios.get(avatarUrl, { responseType: 'arraybuffer' });
+		const buffer = Buffer.from(response.data, 'binary').toString('base64');
+		const base64Image = `data:image/png;base64,${buffer}`;
+		return [base64Image, null];
 	} catch (error) {
-		return [null, error.response.data];
+		return [null, error];
 	}
 };
+
+const localizeSeconds = (n) => {
+	const forms = ['секунду', 'секунды', 'секунд'];
+	const form = (n % 10 === 1 && n % 100 !== 11) ? 0 :
+		(n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 1 : 2;
+	return `${n} ${forms[form]}`;
+};
+
 
 export async function GET(request) {
-	const cookieStore = cookies();
-
 	const searchParams = request.nextUrl.searchParams;
 	const access_token = searchParams.get('access_token');
+	const userIdParam = searchParams.get('userId');
 	if (!access_token) {
 		return NextResponse.json({ error: "No token provided" }, { status: 401 });
 	}
-	await connectMongoDB();
-	const candidate = await Player.findOne({ access_token });
-	if (!candidate) {
-		const [data] = await getUserData(access_token);
-		if (!data) {
-			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
-			if (error === 401) {
-				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
-			} else if (error === 403) {
-				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
-			}
-			await Player.create({
-				nick: result[0].nick || result[0].user.global_name,
-				avatar: result[0].avatar || result[0].user.avatar,
-				roles: result[0].roles,
-				access_token: result[0][0][1]
+
+	await connectToDatabase();
+
+	const user = await User.findOne({ userId: userIdParam });
+
+	if (user) {
+		if (Date.now() - user.updatedAt.getTime() < CACHE_DURATION) {
+			return NextResponse.json({
+				nick: user.nick,
+				roles: user.roles,
 			});
+		} else {
+			await User.findOneAndUpdate({ userId: userIdParam }, { updatedAt: new Date() });
 			return NextResponse.json({
-				nick: result[0].nick || result[0].user.global_name,
-				avatar: result[0].avatar || result[0].user.avatar,
-				roles: result[0].roles,
-				access_token: result[0][0][1]
-			}).cookies.set('refresh_token', result[0][2].refresh_token);
-		}
-		return NextResponse.json({
-			nick: data[0].nick || data[0].user.global_name,
-			avatar: data[0].avatar || data[0].user.avatar,
-			roles: data[0].roles,
-			access_token: data[1].access_token
-		});
-	} else {
-		const [data] = await getUserData(access_token);
-		if (!data[0]) {
-			const [result, error] = await refreshTokenAndGetNewData(cookieStore.get('refresh_token') || '');
-			if (error === 401) {
-				return NextResponse.json("Тебе нужно заново войти", { status: 401 });
-			} else if (error === 403) {
-				return NextResponse.json("Тебя нет в дискорде Ублюдска", { status: 403 });
-			}
-			if (JSON.stringify(data[0].roles) !== JSON.stringify(candidate.roles)) {
-				await Player.findOneAndUpdate({ nick: candidate.nick }, { roles: data[0].roles });
-			}
-			return NextResponse.json({
-				nick: result[0].nick,
-				avatar: result[0].avatar,
-				roles: result[0].roles,
-				access_token: result[0][1].access_token
+				nick: user.nick,
+				roles: user.roles,
 			});
 		}
-		return NextResponse.json({
-			nick: candidate.nick,
-			avatar: candidate.avatar,
-			roles: data[0].roles,
-			access_token: data[1]
+	}
+
+	const [userGuildData, getUserGuildData_error] = await getUserGuildData(access_token);
+	if (getUserGuildData_error) {
+		const { status, data } = getUserGuildData_error;
+		if (status === 429) {
+			return NextResponse.json({
+				error:
+					"Нахуй так быстро? Попробуй снова через " +
+					localizeSeconds(Math.round(data.retry_after))
+			}, { status });
+		}
+		if (status === 401) {
+			return NextResponse.json({
+				error: "Тебе нужно заново войти"
+			}, { status });
+		}
+	}
+
+
+	const nick = userGuildData.nick || userGuildData.user.global_name;
+	// const [avatar] = await getUserAvatar(userGuildData.user.id, userGuildData.avatar || userGuildData.user.avatar);
+	const roles = userGuildData.roles;
+	const userId = userGuildData.user.id;
+
+	if (!user) {
+		await User.create({
+			nick: nick,
+			roles: roles,
+			updatedAt: new Date()
 		});
 	}
+	console.log('юзера нет');
+
+	return NextResponse.json({
+		nick: nick,
+		roles: roles,
+	});
+	// return NextResponse.json({
+	// 	error: "I'm a Teapot"
+	// }, { status: 418 });
 }

@@ -272,7 +272,7 @@ const MainPage = () => {
                                         {(point.updatedAt && point.prevValue >= 0) && (<>
                                             {point.prevValue > point.value ?
                                                 `Забрал ${point.prevValue - point.value} (${new Date(point.updatedAt).toLocaleDateString()} в ${new Date(point.updatedAt).toLocaleTimeString()})`
-                                                : `Положил ${point.value} (${new Date(point.updatedAt).toLocaleDateString()} в ${new Date(point.updatedAt).toLocaleTimeString()})`}
+                                                : `Положил ${point.value - point.prevValue} (${new Date(point.updatedAt).toLocaleDateString()} в ${new Date(point.updatedAt).toLocaleTimeString()})`}
                                         </>)}
                                     </div>
                                 </div>
